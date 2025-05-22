@@ -1,23 +1,26 @@
 <?php
-//capa de abstraccion, difenretes conexiones con mismo metodo objetos de datos de php PHP DATA OBJECTS
-class conexionBD{
-    public function conexionPDO(){
-        $dsn = 'mysql:dbname=empresa;host=127.0.0.1';
-        $usuario = 'root';
-        $contrasena = '';
-        try{
-            $pdo = new PDO($dsn,$usuario,$contrasena);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $pdo->exec("set names utf8"); // funciona para las tildes   
+class conexionBD {
+    public static function conexionPDO() {
+        $dsn = 'mysql:dbname=empresa;host=mysql';
+        $usuario = 'empresa';
+        $contrasena = 'empresa';
+
+        try {
+            $pdo = new PDO($dsn, $usuario, $contrasena);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->exec("SET NAMES utf8");
             return $pdo;
-        }catch(Exception $e){
-            echo "conexion fallida";
+        } catch (PDOException $e) {
+            echo json_encode([
+                "success" => false,
+                "message" => "Conexión fallida: " . $e->getMessage()
+            ]);
+            exit;
         }
     }
-    function cerrar($pdo){
-        $this->$pdo=null;
+
+    public static function cerrar($pdo) {
+        $pdo = null;
     }
-
 }
-
 ?>

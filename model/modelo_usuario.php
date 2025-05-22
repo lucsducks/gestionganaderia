@@ -6,7 +6,7 @@
             $c = conexionBD::conexionPDO();
             $sql = "CALL VERIFICAR_USUARIO(?)";
             $arreglo = array();
-            
+
             $query = $c->prepare($sql);
             $query->bindParam(1,$usuario);
             $query->execute();
@@ -23,5 +23,5 @@
         }
 
     }
-    
+
 ?>

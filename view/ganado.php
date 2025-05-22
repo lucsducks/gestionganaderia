@@ -77,7 +77,7 @@
                     <span>Precio por unidad</span>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistro()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="registrargrupo()">Registrar grupo</button>
@@ -136,7 +136,7 @@
                     <span>Precio por unidad</span>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistrototal()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="registrargrupo()">Registrar grupo</button>
@@ -146,7 +146,7 @@
         </div>
         <div id="modal_ganado" class="modal-container">
             <div class="modal grandes ganado">
-                
+
                 <div class="form-group">
                     <input class="form-field" type="text" placeholder="Introduzca la raza del ganado vacuno" id="Raza">
                     <span>Raza</span>
@@ -197,7 +197,7 @@
                     <input class="form-field" type="text" placeholder="Introduzca la descripcion del ganado vacuno" id="Descripcion">
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistroganado()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="registroGanado()">Guardar</button>
@@ -259,7 +259,7 @@
                     <input class="form-field" type="text" placeholder="Introduzca la descripcion del ganado vacuno" id="Descripcion_total">
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistroganadototal()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="registroGanadoTotal()">Guardar</button>
@@ -279,6 +279,6 @@
     cargartransportista();
     cargartransportistatotal();
     datosdelselect();
-    datosdelselecttotal();      
+    datosdelselecttotal();
     cargarproveedortotal();
 </script>

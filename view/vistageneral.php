@@ -33,7 +33,7 @@
                 <br>
                 <br>
                 <br>
-              
+
                 <table id="tablita" class="tablabd general" style="width: 100%;">
                     <thead>
                         <tr>
@@ -121,7 +121,7 @@
                         id="Descripcion">
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistroganadolistageneral()"
                         role="button">Cancelar</button>
@@ -170,7 +170,7 @@
                     <span>Biaticos de la empresa</span>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistropago()"
                         role="button">Cancelar</button>
@@ -247,7 +247,7 @@
                 </div>
                 <br>
 
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalmodificarganado()"
                         role="button">Cancelar</button>

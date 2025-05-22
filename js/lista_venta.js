@@ -1,5 +1,3 @@
-
-
 var modal_container_grupo = document.getElementById("modal_grupo_editar1");
 function cerrarmodalregistro() {
   modal_container_grupo.classList.remove("show");
@@ -39,7 +37,6 @@ function abrirModalActualiaciondePagoslistaventa() {
     confirmButtonText: "Registro por pago total",
     denyButtonText: `Registro con precio por unidad`,
   }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
       Swal.fire({
         title: "Está seguro realizar este tipo de registro con pago total",
@@ -47,7 +44,6 @@ function abrirModalActualiaciondePagoslistaventa() {
         confirmButtonText: "Si",
         denyButtonText: `No`,
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           abrirmodalganadoactualizadolistaventa();
         }
@@ -60,7 +56,6 @@ function abrirModalActualiaciondePagoslistaventa() {
         confirmButtonText: "Si",
         denyButtonText: `No`,
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           abrirmodalganadoactualizadolistaventaPrecioUnidad();
         }
@@ -68,7 +63,7 @@ function abrirModalActualiaciondePagoslistaventa() {
     }
   });
 }
-var datatotalgrupolistaventalistaventa = 0
+var datatotalgrupolistaventalistaventa = 0;
 // ------------------funcion de cargar grupos
 function cargargrupoganadovendidoslistaventa() {
   $.ajax({
@@ -91,7 +86,6 @@ function cargargrupoganadovendidoslistaventa() {
       document.getElementById(
         "select_grupo_ganado_lista_venta_general"
       ).innerHTML = llenardata;
-      //document.getElementById("select_grupo_ganado").value = "";
     } else {
       llenardata +=
         "<option value=''>No se encontrados datos en la bd</option>";
@@ -121,17 +115,14 @@ function cargargrupoganadovendidoslistaventaPrecioUnidad() {
           "<option value='" + data[i][0] + "'>" + data[i][0] + "</option>";
       }
 
-      document.getElementById(
-        "select_grupo_ganado_lista_ventas_pu"
-      ).innerHTML = llenardata;
-      //document.getElementById("select_grupo_ganado").value = "";
+      document.getElementById("select_grupo_ganado_lista_ventas_pu").innerHTML =
+        llenardata;
       datatotalgrupolistaventa = data.length;
     } else {
       llenardata +=
         "<option value=''>No se encontrados datos en la bd</option>";
-      document.getElementById(
-        "select_grupo_ganado_lista_ventas_pu"
-      ).innerHTML = llenardata;
+      document.getElementById("select_grupo_ganado_lista_ventas_pu").innerHTML =
+        llenardata;
     }
   });
 }
@@ -154,7 +145,8 @@ function cargarGanadoInputPu(grupoid) {
         document.getElementById("Salud_lista_ventas_pu").value = data[i][6];
         document.getElementById("Aretes_lista_ventas_pu").value = data[i][8];
         document.getElementById("Marca_lista_ventas_pu").value = data[i][7];
-        document.getElementById("Descripcion_lista_ventas_pu").value = data[i][9];
+        document.getElementById("Descripcion_lista_ventas_pu").value =
+          data[i][9];
         document.getElementById("Edad_lista_ventas_pu").value = data[i][11];
       }
     }
@@ -173,14 +165,12 @@ function cargarganadoListaVendidosPU(grupoidListaVenta) {
     let i;
     let idganado;
     if (data.length > 0) {
-      if(data.length == 1){
+      if (data.length == 1) {
         localStorage.setItem("idganadoescogidoPU", data[0][0]);
-        
       }
       for (i = 0; i < data.length; i++) {
         if (i == 0) {
           idganado = data[i][0];
-          
         }
 
         llenardata +=
@@ -192,20 +182,22 @@ function cargarganadoListaVendidosPU(grupoidListaVenta) {
           data[i][3] +
           "</option>";
       }
-      document.getElementById("select_ganado_vacuno_lista_ventas_pu").innerHTML = llenardata;
-      document.getElementById("select_ganado_vacuno_lista_ventas_pu").value = "";
+      document.getElementById(
+        "select_ganado_vacuno_lista_ventas_pu"
+      ).innerHTML = llenardata;
+      document.getElementById("select_ganado_vacuno_lista_ventas_pu").value =
+        "";
     } else {
       llenardata +=
         "<option value=''>No se encontrados datos en la bd</option>";
-      document.getElementById("select_ganado_vacuno_lista_ventas_pu").innerHTML = llenardata;
-      document.getElementById("select_ganado_vacuno_lista_ventas_pu").value = "";
+      document.getElementById(
+        "select_ganado_vacuno_lista_ventas_pu"
+      ).innerHTML = llenardata;
+      document.getElementById("select_ganado_vacuno_lista_ventas_pu").value =
+        "";
     }
   });
 }
-
-
-
-
 
 var dni_buscar = 1;
 //---------------funcion de la tabla grupo serverside------------------------
@@ -276,18 +268,16 @@ function sumatotaldeuda() {
   document.getElementById("deudatotalpersonas").value = convertido;
 }
 
-//--------------cargar selecccion de proveedor----------------
-
 //----------------editar vendedor-----------------------
 function editarmodal() {
   modal_container_grupo.classList.add("show");
 
   $("#tabla_grupo1").on("click", ".editar", function () {
-    var data = tbl_ganado_simple.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_ganado_simple.row($(this).parents("tr")).data();
     /*if(tbl_vendedor_simple.row(this).child.isShown()){
-        var data = tbl_vendedor_simple.row(this).data(); // ayuda a llevar los datos cuando esta tamano celular
+        var data = tbl_vendedor_simple.row(this).data();
     }*/
-    document.getElementById("id_editar").value = data[0]; //posicion que se encuentra en la base de datos
+    document.getElementById("id_editar").value = data[0];
     document.getElementById("fecha_editar").value = data[2];
     document.getElementById("cantidad_editar").value = data[1];
     document.getElementById("precio_editar").value = data[3];
@@ -295,7 +285,7 @@ function editarmodal() {
 }
 
 function modificargrupo() {
-  let id = document.getElementById("id_editar").value; //posicion que se encuentra en la base de datos
+  let id = document.getElementById("id_editar").value;
   let cantidad = document.getElementById("cantidad_editar").value;
   let precio = document.getElementById("precio_editar").value;
   if (id.length == 0 || cantidad.length == 0 || precio.length == 0) {
@@ -331,14 +321,13 @@ function modificargrupo() {
 
 function abrirmodalganadogrupo1() {
   $("#tabla_grupo1").on("click", ".seleccionar", function () {
-    var data = tbl_ganado_simple.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_ganado_simple.row($(this).parents("tr")).data();
 
     localStorage.setItem("grupoidventa", data["Grupo_Venta"]);
     lista_ganado_simple1();
   });
   modal_container_ganado_ventaslista.classList.add("show");
 }
-//----------funcion para seleccionar grupo modal------------------------
 
 //---------------funcion de la tabla ganado simple------------------------
 
@@ -405,7 +394,7 @@ function lista_ganado_simple1() {
 function actualizarpagototalganado() {
   let grupoventa = document.getElementById(
     "select_grupo_ganado_lista_venta_general"
-  ).value; //posicion que se encuentra en la base de datos
+  ).value;
   let pagototalventa = document.getElementById("pagototalganado").value;
   let preciounidadventa = document.getElementById("preciounidadganado").value;
   if (
@@ -454,19 +443,22 @@ function actualizarpagototalganado() {
 function limpiarfuncionesdelistaventa() {
   let grupoventa = document.getElementById(
     "select_grupo_ganado_lista_venta_general"
-  ).value; //posicion que se encuentra en la base de datos
+  ).value;
   document.getElementById("pagototalganado").value = "";
   document.getElementById("preciounidadganado").value = "";
 }
 
-
 function actualizarpagototalganadoPrecioUnidad() {
   let IdGanadoVendido = document.getElementById(
     "select_ganado_vacuno_lista_ventas_pu"
-  ).value; //posicion que se encuentra en la base de datos
-  localStorage.setItem('nodaesto',IdGanadoVendido);
-  let PrecioUnidadGanadoUltimo = document.getElementById("Precio_Unidad_lista_ventas_pu").value;
-  let PesoActualGanado = document.getElementById("Peso_Actual_lista_ventas_pu").value;
+  ).value;
+  localStorage.setItem("nodaesto", IdGanadoVendido);
+  let PrecioUnidadGanadoUltimo = document.getElementById(
+    "Precio_Unidad_lista_ventas_pu"
+  ).value;
+  let PesoActualGanado = document.getElementById(
+    "Peso_Actual_lista_ventas_pu"
+  ).value;
   if (
     IdGanadoVendido.length == 0 ||
     PrecioUnidadGanadoUltimo.length == 0 ||
@@ -487,7 +479,6 @@ function actualizarpagototalganadoPrecioUnidad() {
       puv: PesoActualGanado,
     },
   }).done(function (resp) {
-   
     if (resp == 1) {
       Swal.fire(
         "Mensaje de confirmacion",
@@ -497,14 +488,12 @@ function actualizarpagototalganadoPrecioUnidad() {
         cargargrupoganadovendidoslistaventaPrecioUnidad();
         limpiarfuncionesdelistaventaPrecioUnidad();
         lista_Ganado_serverside();
-        
       });
     }
   });
 }
 
 function limpiarfuncionesdelistaventaPrecioUnidad() {
-//posicion que se encuentra en la base de datos
   document.getElementById("select_grupo_ganado_lista_ventas_pu").value = "";
   document.getElementById("select_ganado_vacuno_lista_ventas_pu").value = "";
   document.getElementById("Peso_Actual_lista_ventas_pu").value = "";
@@ -522,39 +511,34 @@ function limpiarfuncionesdelistaventaPrecioUnidad() {
 }
 
 function actualizarpagosganadoPrecioUnidadFinal() {
-    Swal.fire({
-      title:
-        "Esta seguro que desea guardar el registro completo de lista ganado,Ya no se podra corregir",
-      showDenyButton: true,
+  Swal.fire({
+    title:
+      "Esta seguro que desea guardar el registro completo de lista ganado,Ya no se podra corregir",
+    showDenyButton: true,
 
-      confirmButtonText: "guardar",
-      denyButtonText: `no guardar`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      let IdGanadoVendido23 = localStorage.getItem('nodaesto');
-      let formData = new FormData();
-  
+    confirmButtonText: "guardar",
+    denyButtonText: `no guardar`,
+  }).then((result) => {
+    let IdGanadoVendido23 = localStorage.getItem("nodaesto");
+    let formData = new FormData();
+
     formData.append("sad", IdGanadoVendido23);
-      if (result.isConfirmed) {
-
-          $.ajax({
-            url: "controller/ventas/actualizar_pago_de_todo.php",
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (resp) {
-              Swal.fire("Guardado con exito!", "", "success");
-              lista_Ganado_serverside();
-              cerrarmodalganadoactualizadolistaventaPrecioUnidad();
-              location.reload();
-            },
-          });
-          
-        
-      } else if (result.isDenied) {
-        Swal.fire("Registro no guardado", "", "info");
-      }
-    });
-  
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "controller/ventas/actualizar_pago_de_todo.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (resp) {
+          Swal.fire("Guardado con exito!", "", "success");
+          lista_Ganado_serverside();
+          cerrarmodalganadoactualizadolistaventaPrecioUnidad();
+          location.reload();
+        },
+      });
+    } else if (result.isDenied) {
+      Swal.fire("Registro no guardado", "", "info");
+    }
+  });
 }

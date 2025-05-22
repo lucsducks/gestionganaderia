@@ -1,23 +1,23 @@
-var modal_container = document.getElementById('modal_container');
-function abrirmodalderegistro(){
-  modal_container.classList.add('show');  
+var modal_container = document.getElementById("modal_container");
+function abrirmodalderegistro() {
+  modal_container.classList.add("show");
 }
-function cerrarmodalregistro(){
-  modal_container.classList.remove('show');
-}
-
-var modal_container_editar = document.getElementById('modal_container_editar');
-function cerrarmodaleditar(){
-  modal_container_editar.classList.remove('show');
+function cerrarmodalregistro() {
+  modal_container.classList.remove("show");
 }
 
+var modal_container_editar = document.getElementById("modal_container_editar");
+function cerrarmodaleditar() {
+  modal_container_editar.classList.remove("show");
+}
 
-  // modal eliminar
-  var modal_container_eliminar = document.getElementById('modal_container_eliminar');
-  function cerrarmodaleliminar(){
-    modal_container_eliminar.classList.remove('show');
-  }
-
+// modal eliminar
+var modal_container_eliminar = document.getElementById(
+  "modal_container_eliminar"
+);
+function cerrarmodaleliminar() {
+  modal_container_eliminar.classList.remove("show");
+}
 
 var tbl_ganado_simple;
 function lista_Transportista_serverside() {
@@ -68,15 +68,14 @@ function lista_Transportista_serverside() {
   });
 }
 
-
 function abrirmodaleditar() {
   modal_container_editar.classList.add("show");
   $("#tabla_ganado_simple").on("click", ".editar", function () {
-    var data = tbl_ganado_simple.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_ganado_simple.row($(this).parents("tr")).data();
     if (tbl_ganado_simple.row(this).child.isShown()) {
-      var data = tbl_ganado_simple.row(this).data(); // ayuda a llevar los datos cuando esta tamano celular
+      var data = tbl_ganado_simple.row(this).data();
     }
-    document.getElementById("id_editar").value = data[0]; //posicion que se encuentra en la base de datos
+    document.getElementById("id_editar").value = data[0];
     document.getElementById("placa_editar").value = data[2];
     document.getElementById("licencia_editar").value = data[1];
     document.getElementById("documento_editar").value = data[3];
@@ -109,7 +108,6 @@ function editarTransportista() {
     },
   }).done(function (resp) {
     if (resp > 0) {
-
       Swal.fire(
         "Mensaje de confirmacion",
         "Modificado con exito",
@@ -129,14 +127,14 @@ function editarTransportista() {
   });
 }
 function abrirmodaleliminar() {
-    modal_container_eliminar.classList.add("show");
+  modal_container_eliminar.classList.add("show");
   $("#tabla_ganado_simple").on("click", ".eliminar", function () {
-    var data = tbl_ganado_simple.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_ganado_simple.row($(this).parents("tr")).data();
     /*if(tbl_ganado_simple.row(this).child.isShown()){
-            var data = tbl_vendedor_simple.row(this).data(); // ayuda a llevar los datos cuando esta tamano celular
+            var data = tbl_vendedor_simple.row(this).data();
         }*/
 
-    document.getElementById("id_eliminar").value = data[0]; //posicion que se encuentra en la base de datos
+    document.getElementById("id_eliminar").value = data[0];
     document.getElementById("placa_eliminar").value = data[2];
     document.getElementById("licencia_eliminar").value = data[1];
     document.getElementById("documento_eliminar").value = data[3];
@@ -150,7 +148,7 @@ function eliminartransportista() {
     url: "controller/transportista/eliminar_transportista.php",
     type: "POST",
     data: {
-      i: id
+      i: id,
     },
   }).done(function (resp) {
     if (resp > 0) {
@@ -168,7 +166,6 @@ function eliminartransportista() {
   });
 }
 
-
 function registar_transportista() {
   let licencia = document.getElementById("placa").value;
   let placa = document.getElementById("licencia").value;
@@ -181,11 +178,11 @@ function registar_transportista() {
       "warning"
     );
   }
-  if (documento.length == 0 ) {
-    documento = '00000000';
+  if (documento.length == 0) {
+    documento = "00000000";
   }
   if (ruc.length == 0) {
-    ruc = '00000000000';
+    ruc = "00000000000";
   }
   let formData = new FormData();
   formData.append("p", licencia);

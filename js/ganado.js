@@ -24,7 +24,6 @@ function abrirmodalderegistro() {
       confirmButtonText: "Registro por pago total",
       denyButtonText: `Registro con precio por unidad`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire({
           title: "Está seguro realizar este tipo de registro con pago total",
@@ -32,7 +31,6 @@ function abrirmodalderegistro() {
           confirmButtonText: "Si",
           denyButtonText: `No`,
         }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             abrioregistrototal = true;
             modal_container_grupo_total.classList.add("show");
@@ -46,7 +44,6 @@ function abrirmodalderegistro() {
           confirmButtonText: "Si",
           denyButtonText: `No`,
         }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             abrioregistrocompraunidad = true;
             modal_container_grupo.classList.add("show");
@@ -76,12 +73,11 @@ function abrirmodalderegistroganado() {
       "warning"
     );
   } else {
-
     if (abrioregistrototal == true) {
       modal_container_ganado_total.classList.add("show");
     } else if (abrioregistrocompraunidad == true) {
       modal_container_ganado.classList.add("show");
-    } 
+    }
   }
 }
 function cerrarmodalregistroganado() {
@@ -100,7 +96,7 @@ function abrirmodalderegistropago() {
   } else {
     if (abriopago == true) {
       modal_container_pago.classList.add("show");
-    } 
+    }
   }
 }
 function cerrarmodalregistropago() {
@@ -228,11 +224,9 @@ function registrargrupo() {
     localStorage.setItem("dato", parseInt(resp) + 1);
     if (abrioregistrocompraunidad == true) {
       registrarpago();
-      
     } else if (abrioregistrototal == true) {
       registrarpagototal();
     }
-    
   });
 
   return false;
@@ -297,7 +291,7 @@ function lista_ganado_simple() {
 
 function registroGanado() {
   let raza = document.getElementById("Raza").value;
-  let Preciounidad = parseFloat( localStorage.getItem("preciounidadganado"));
+  let Preciounidad = parseFloat(localStorage.getItem("preciounidadganado"));
   let Peso = document.getElementById("Peso").value;
   let Color = document.getElementById("Color").value;
   let edadtipo = document.getElementById("select_edad").value;
@@ -321,7 +315,7 @@ function registroGanado() {
     sexo.length == 0 ||
     salud.length == 0 ||
     idGrupo.length == 0 ||
-    Edad.length == 0 
+    Edad.length == 0
   ) {
     return swal.fire(
       "Mensaje de Advertencia",
@@ -354,8 +348,6 @@ function registroGanado() {
     processData: false,
     success: function (resp) {
       if (resp > 0) {
-        //validarInput("nombre","apellido","documento");
-
         Swal.fire(
           "Mensaje de confirmacion",
           "Agregado con exito",
@@ -431,8 +423,6 @@ function registroGanadoTotal() {
     processData: false,
     success: function (resp) {
       if (resp > 0) {
-        //validarInput("nombre","apellido","documento");
-
         Swal.fire(
           "Mensaje de confirmacion",
           "Agregado con exito",
@@ -510,10 +500,10 @@ function registrarpago() {
   let preciounidadganado = document.getElementById("preciounidad").value;
   if (pago_parcial.length == 0) {
     pago_parcial = 0;
-  } 
+  }
   if (preciounidadganado.length == 0) {
     preciounidadganado = 0;
-  } 
+  }
   if (Biatico_Inicio.length == 0) {
     Biatico_Inicio = 0;
   }
@@ -527,7 +517,7 @@ function registrarpago() {
     Biatico_Empresa = 0;
   }
   if (ubicacion.length == 0) {
-    return  Swal.fire("Mensaje de advertencia", "Complete los datos", "warning");
+    return Swal.fire("Mensaje de advertencia", "Complete los datos", "warning");
   }
   let pagototalbiatico =
     parseFloat(Biatico_Inicio) +
@@ -555,13 +545,15 @@ function registrarpago() {
     processData: false,
     success: function (resp) {
       localStorage.setItem("pagoid", resp);
-      Swal.fire("Mensaje de confirmacion", "Agregado con exito", "success").then(
-        (value) => {
-          modal_container_grupo.classList.remove("show");
-          modal_container_grupo_total.classList.remove("show");
-          abrio = true;
-        }
-      );
+      Swal.fire(
+        "Mensaje de confirmacion",
+        "Agregado con exito",
+        "success"
+      ).then((value) => {
+        modal_container_grupo.classList.remove("show");
+        modal_container_grupo_total.classList.remove("show");
+        abrio = true;
+      });
     },
   });
   return false;
@@ -590,9 +582,7 @@ function actualizarpagosganado() {
       confirmButtonText: "guardar",
       denyButtonText: `no guardar`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-
         if (abrioregistrocompraunidad == true) {
           let idGrupo = localStorage.getItem("dato");
           let pagototal = localStorage.getItem("pgbiatc");
@@ -673,19 +663,23 @@ function registrarpagototal() {
       Biatico_Empresa = 0;
     }
     if (ubicacion.length == 0) {
-      return  Swal.fire("Mensaje de advertencia", "Complete los datos", "warning");
+      return Swal.fire(
+        "Mensaje de advertencia",
+        "Complete los datos",
+        "warning"
+      );
     }
-  
+
     let pagototalbiatico =
       parseFloat(Biatico_Inicio) +
       parseFloat(Biatico_Extras) +
       parseFloat(Biatico_Personal) +
       parseFloat(Biatico_Empresa);
-  
+
     localStorage.setItem("pgbiatc", pagototalbiatico);
-  
+
     let formData = new FormData();
-  
+
     formData.append("pt", pago_total);
     formData.append("pp", pago_parcial);
     formData.append("bi", Biatico_Inicio);
@@ -703,13 +697,15 @@ function registrarpagototal() {
       processData: false,
       success: function (resp) {
         localStorage.setItem("pagoid", resp);
-        Swal.fire("Mensaje de confirmacion", "Agregado con exito", "success").then(
-          (value) => {
-            modal_container_grupo.classList.remove("show");
-            modal_container_grupo_total.classList.remove("show");
-            abrio = true;
-          }
-        );
+        Swal.fire(
+          "Mensaje de confirmacion",
+          "Agregado con exito",
+          "success"
+        ).then((value) => {
+          modal_container_grupo.classList.remove("show");
+          modal_container_grupo_total.classList.remove("show");
+          abrio = true;
+        });
       },
     });
     return false;

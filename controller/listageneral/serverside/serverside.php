@@ -1,19 +1,17 @@
 <?php
 include '../../../model/modelo_conexion.php';
-class TableDataVendedor extends conexionBD{ 
+class TableDataVendedor extends conexionBD{
     private $_db;
-    public function __construct() { 
+    public function __construct() {
             $this->_db = conexionBD::conexionPDO();
-                            
-    }   
+
+    }
     public function getObtnerListadoVendedor($table, $index_column, $columns) {
-        // Paging
         $sLimit = "";
         if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' ) {
             $sLimit = "LIMIT ".intval( $_GET['iDisplayStart'] ).", ".intval( $_GET['iDisplayLength'] );
         }
-        
-        // Ordering
+
         $sOrder = "";
         if ( isset( $_GET['iSortCol_0'] ) ) {
             $sOrder = "ORDER BY  ";
@@ -23,19 +21,14 @@ class TableDataVendedor extends conexionBD{
                     $sOrder .= "`".$columns[ intval( $_GET['iSortCol_'.$i] ) ]."` ". $sortDir .", ";
                 }
             }
-            
+
             $sOrder = substr_replace( $sOrder, "", -2 );
             if ( $sOrder == "ORDER BY" ) {
                 $sOrder = "";
             }
         }
-        
-        /* 
-         * Filtering
-         * NOTE this does not match the built-in DataTables filtering which does it
-         * word by word on any field. It's possible to do here, but concerned about efficiency
-         * on very large tables, and MySQL's regex functionality is very limited
-         */
+
+
         $sWhere = "";
         if ( isset($_GET['sSearch']) && $_GET['sSearch'] != "" ) {
             $sWhere = "WHERE (";
@@ -47,8 +40,7 @@ class TableDataVendedor extends conexionBD{
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
-        
-        // Individual column filtering
+
         for ( $i=0 ; $i<count($columns) ; $i++ ) {
             if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' ) {
                 if ( $sWhere == "" ) {
@@ -60,12 +52,10 @@ class TableDataVendedor extends conexionBD{
                 $sWhere .= "`".$columns[$i]."` LIKE :search".$i." ";
             }
         }
-        
-        // SQL queries get data to display
+
         $sQuery = "SELECT SQL_CALC_FOUND_ROWS `".str_replace(" , ", " ", implode("`, `", $columns))."` FROM `".$table."` ".$sWhere." ".$sOrder." ".$sLimit;
         $statement = $this->_db->prepare($sQuery);
-        
-        // Bind parameters
+
         if ( isset($_GET['sSearch']) && $_GET['sSearch'] != "" ) {
             $statement->bindValue(':search', '%'.$_GET['sSearch'].'%', PDO::PARAM_STR);
         }
@@ -74,30 +64,26 @@ class TableDataVendedor extends conexionBD{
                 $statement->bindValue(':search'.$i, '%'.$_GET['sSearch_'.$i].'%', PDO::PARAM_STR);
             }
         }
- 
+
         $statement->execute();
         $rResult = $statement->fetchAll();
-        
+
         $iFilteredTotal = current($this->_db->query('SELECT FOUND_ROWS()')->fetch());
-        
-        // Get total number of rows in table
+
         $sQuery = "SELECT COUNT(`".$index_column."`) FROM `".$table."`";
         $iTotal = current($this->_db->query($sQuery)->fetch());
-        
-        // Output
+
         $output = array(
             "sEcho" => intval($_GET['sEcho']),
             "iTotalRecords" => $iTotal,
             "iTotalDisplayRecords" => $iFilteredTotal,
             "aaData" => array()
         );
-        
-        // Return array of values
+
         foreach($rResult as $aRow) {
-            $row = array();         
+            $row = array();
             for ( $i = 0; $i < count($columns); $i++ ) {
                 if ( $columns[$i] == "version" ) {
-                    // Special output formatting for 'version' column
                     $row[] = ($aRow[ $columns[$i] ]=="0") ? '-' : $aRow[ $columns[$i] ];
                 }
                 else if ( $columns[$i] != ' ' ) {
@@ -106,7 +92,7 @@ class TableDataVendedor extends conexionBD{
             }
             $output['aaData'][] = $row;
         }
-        
+
         echo json_encode( $output );
     }
 }

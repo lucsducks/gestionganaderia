@@ -49,7 +49,7 @@
                 </div>
 
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistrocomprador()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="registar_comprador_compra()">Guardar</button>
@@ -87,7 +87,7 @@
                 </div>
 
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodaleditar()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="modificarComprador()">Modificar</button>
@@ -125,7 +125,6 @@
                 </div>
 
                 <br>
-                <!-- HTML !-->
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodaleliminar()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="eliminarcomprador()">Eliminar</button>
@@ -134,7 +133,7 @@
 
             </div>
         </div>
-            
+
 
 </div>
 <script src="js/comprador.js"></script>

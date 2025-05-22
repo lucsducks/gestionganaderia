@@ -1,19 +1,20 @@
-localStorage.setItem("Pagoidgrupototalfecha",0);
-var valorgeneral = 1
-var modal_container_editar = document.getElementById("modal_container_editar_pago");
+localStorage.setItem("Pagoidgrupototalfecha", 0);
+var valorgeneral = 1;
+var modal_container_editar = document.getElementById(
+  "modal_container_editar_pago"
+);
 function cerrarmodaleditar() {
-  
   modal_container_editar.classList.remove("show");
   limpiarinputpagos();
 }
 var modal_pago_grupo = document.getElementById("modal_pago_grupo");
 function cerrarmodalopago() {
-  
   modal_pago_grupo.classList.remove("show");
 }
-var modal_pago_eliminar = document.getElementById("modal_container_eliminar_pagos");
+var modal_pago_eliminar = document.getElementById(
+  "modal_container_eliminar_pagos"
+);
 function cerrarmodalopagoeliminar() {
-  
   modal_pago_eliminar.classList.remove("show");
 }
 //---------------funcion de la tabla biaticoes serverside------------------------
@@ -33,12 +34,13 @@ function lista_biaticos_serverside() {
       { data: "Tipo" },
       { data: "Pago_Total" },
       { data: "Pago_Parcial" },
-      {  data: "Restante",
+      {
+        data: "Restante",
         render: function (data, type, row) {
           if (parseFloat(data) == 0) {
-            return '<span class="success">'+ data + '</span>';
-          }else {
-            return '<span class="danger">'+ data + '</span>';
+            return '<span class="success">' + data + "</span>";
+          } else {
+            return '<span class="danger">' + data + "</span>";
           }
         },
       },
@@ -82,10 +84,11 @@ function lista_biaticos_serverside() {
 //----------------elminar biatico-----------------------
 function abrirmodaleliminarpago() {
   $("#tabla_biatico").on("click", ".eliminar", function () {
-    var data = tbl_biatico.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_biatico.row($(this).parents("tr")).data();
 
-    document.getElementById("id_eliminar_pago").value = data["Id_Pago"]; //posicion que se encuentra en la base de datos
-    document.getElementById("pago_total_eliminar_pago").value = data["Pago_Total"];
+    document.getElementById("id_eliminar_pago").value = data["Id_Pago"];
+    document.getElementById("pago_total_eliminar_pago").value =
+      data["Pago_Total"];
     document.getElementById("deuda_eliminar_pago").value = data["Restante"];
     document.getElementById("PrecioUnidad_eliminar_pago").value =
       data["Precio_Unidad"];
@@ -95,26 +98,26 @@ function abrirmodaleliminarpago() {
     if (data["Biatico_Final"] == 0 || data["Biatico_Final"] === null) {
       document.getElementById("BiaticoFinal_eliminar_pago").disabled = true;
     }
-    document.getElementById("Biatico_Extras_eliminar_pago").value = data["Biatico_Extras"];
-    document.getElementById("Biatico_Personal_eliminar_pago").value = data["Biatico_Personal"];
-    document.getElementById("Biatico_Empresa_eliminar_pago").value = data["Biatico_Empresa"];
+    document.getElementById("Biatico_Extras_eliminar_pago").value =
+      data["Biatico_Extras"];
+    document.getElementById("Biatico_Personal_eliminar_pago").value =
+      data["Biatico_Personal"];
+    document.getElementById("Biatico_Empresa_eliminar_pago").value =
+      data["Biatico_Empresa"];
     modal_pago_eliminar.classList.add("show");
   });
 }
 function elminarBiatico() {
   let id = $("#id_eliminar_pago").val();
-  
 
   $.ajax({
     url: "controller/biaticos/eliminar_biatico.php",
     type: "POST",
     data: {
-      i: id
+      i: id,
     },
   }).done(function (resp) {
     if (resp > 0) {
-      //validarInput("nombre","apellido","documento");
-
       Swal.fire(
         "Mensaje de confirmacion",
         "Modificado con exito",
@@ -137,9 +140,9 @@ function elminarBiatico() {
 //----------------editar biatico-----------------------
 function abrirmodaleditar() {
   $("#tabla_biatico").on("click", ".seleccionar", function () {
-    var data = tbl_biatico.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_biatico.row($(this).parents("tr")).data();
 
-    document.getElementById("id_editar_pago").value = data["Id_Pago"]; //posicion que se encuentra en la base de datos
+    document.getElementById("id_editar_pago").value = data["Id_Pago"];
     document.getElementById("pago_total_pago").value = data["Pago_Total"];
     document.getElementById("deuda_pago").value = data["Restante"];
     document.getElementById("PrecioUnidad_editar_pago").value =
@@ -155,12 +158,12 @@ function abrirmodaleditar() {
 }
 function abrirmodalobservar() {
   $("#tabla_biatico").on("click", ".observar", function () {
-    var data = tbl_biatico.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_biatico.row($(this).parents("tr")).data();
 
-    localStorage.setItem("Pagoidgrupototalfecha",data["Id_Pago"]) ; //posicion que se encuentra en la base de datos
-    valorgeneral = data["Id_Pago"]
+    localStorage.setItem("Pagoidgrupototalfecha", data["Id_Pago"]);
+    valorgeneral = data["Id_Pago"];
     lista_pagos_grupo();
-   
+
     modal_pago_grupo.classList.add("show");
   });
 }
@@ -224,8 +227,6 @@ function modificarBiatico() {
   }).done(function (resp) {
     limpiarinputpagos();
     if (resp > 0) {
-      //validarInput("nombre","apellido","documento");
-
       Swal.fire(
         "Mensaje de confirmacion",
         "Modificado con exito",
@@ -274,7 +275,7 @@ function lista_pagos_grupo() {
       { defaultContent: "" },
       { data: "Id_Pago" },
       { data: "Fecha_Modificacion" },
-      { data: "Pago"}
+      { data: "Pago" },
     ],
     pageLength: 6,
     destroy: true,
@@ -297,18 +298,15 @@ function lista_pagos_grupo() {
 }
 function elminarRegistroBiatico() {
   let id = localStorage.getItem("Pagoidgrupototalfecha");
-  
 
   $.ajax({
     url: "controller/biaticos/eliminar_Registro_biatico.php",
     type: "POST",
     data: {
-      i: id
+      i: id,
     },
   }).done(function (resp) {
     if (resp > 0) {
-      //validarInput("nombre","apellido","documento");
-
       Swal.fire(
         "Mensaje de confirmacion",
         "Modificado con exito",

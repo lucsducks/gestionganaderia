@@ -4,7 +4,7 @@
 
     <div class="nombtn">
         <h1>Pagos</h1>
-        
+
     </div>
 
     <div class="recent-orders">
@@ -55,7 +55,7 @@
                     <input class="form-field"  type="text" placeholder="Introduzca el flete adicional del transportista" id="BiaticoInicioeditar_pago">
                     <span>Transportista - Compra</span>
                 </div>
-                
+
                 <br>
                 <div class="form-group">
                     <span>Transportista - Venta</span>
@@ -82,7 +82,7 @@
                     <input class="form-field" type="number" placeholder="Introduzca el precio por unidad" id="PrecioUnidad_editar_pago" disabled>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodaleditar()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="modificarBiatico()">Guardar</button>
@@ -92,7 +92,7 @@
             </div>
         </div>
         <div id="modal_pago_grupo" class="modal-container">
-            
+
             <div class="modal tableta">
                 <br>
                 <br>
@@ -110,7 +110,7 @@
                     <button class="button-34 cancelar" onclick="cerrarmodalopago()" role="button">Salir</button>
                     <button class="button-34 success" onclick="elminarRegistroBiatico()" role="button">Eliminar Registro</button>
                 </div>
-                
+
                 <br><br>
             </div>
         </div>
@@ -135,7 +135,7 @@
                     <input class="form-field"  type="text" placeholder="Introduzca el flete adicional del transportista" id="BiaticoInicio_eliminar_pago" disabled>
                     <span>Transportista - compra</span>
                 </div>
-                
+
                 <br>
                 <div class="form-group">
                     <span>Transportista - venta</span>
@@ -162,7 +162,7 @@
                     <input class="form-field" type="number" placeholder="Introduzca el precio por unidad" id="PrecioUnidad_eliminar_pago" disabled>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalopagoeliminar()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="elminarBiatico()">Eliminar</button>
@@ -173,7 +173,6 @@
         </div>
 
     </div>
-    <!-- modal -->
 
 
 

@@ -1,17 +1,21 @@
 localStorage.setItem("compra", 1);
-var modal_container_grupo_ventas_grupo = document.getElementById("modal_grupo_ganado_Venta");
+var modal_container_grupo_ventas_grupo = document.getElementById(
+  "modal_grupo_ganado_Venta"
+);
 
-var modal_container_ganado = document.getElementById("modal_ganado_venta_ventass");
+var modal_container_ganado = document.getElementById(
+  "modal_ganado_venta_ventass"
+);
 var abrioselect1 = false;
 function abrirmodalderegistrogrupoventa() {
-  if (localStorage.getItem("compra") > 1) { 
+  if (localStorage.getItem("compra") > 1) {
     return Swal.fire({
-      title: "Ya se registro el grupo, continue con los ganados o actualice la pagina. ¿Desea actualizar la pagina?",
+      title:
+        "Ya se registro el grupo, continue con los ganados o actualice la pagina. ¿Desea actualizar la pagina?",
       showDenyButton: true,
       confirmButtonText: "Si",
       denyButtonText: `No`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         return Swal.fire({
           title: "Está seguroque desea actualizar la pagina?",
@@ -19,7 +23,6 @@ function abrirmodalderegistrogrupoventa() {
           confirmButtonText: "Si",
           denyButtonText: `No`,
         }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             let timerInterval1;
             Swal.fire({
@@ -38,7 +41,6 @@ function abrirmodalderegistrogrupoventa() {
                 clearInterval(timerInterval1);
               },
             }).then((result1) => {
-              /* Read more about handling dismissals below */
               if (result1.dismiss === Swal.DismissReason.timer) {
                 location.reload();
               }
@@ -70,7 +72,7 @@ function abrirmodalderegistrogrupoventa() {
       }
     });
   } else {
-  modal_container_grupo_ventas_grupo.classList.add("show");
+    modal_container_grupo_ventas_grupo.classList.add("show");
   }
 }
 function cerrarmodalregistrogrupoventa() {
@@ -131,15 +133,17 @@ function cargartransportistaventa() {
         llenardata +=
           "<option value='" + data[i][0] + "'>" + data[i][2] + "</option>";
       }
-      document.getElementById("select_transportista_lista_venta").innerHTML = llenardata;
+      document.getElementById("select_transportista_lista_venta").innerHTML =
+        llenardata;
     } else {
       llenardata +=
         "<option value=''>No se encontrados datos en la bd</option>";
-      document.getElementById("select_transportista_lista_venta").innerHTML = llenardata;
+      document.getElementById("select_transportista_lista_venta").innerHTML =
+        llenardata;
     }
   });
 }
-var datatotalgrupo = 0
+var datatotalgrupo = 0;
 function cargargrupoganado() {
   $.ajax({
     type: "POST",
@@ -158,8 +162,7 @@ function cargargrupoganado() {
         llenardata +=
           "<option value='" + data[i][0] + "'>" + data[i][0] + "</option>";
       }
-    
-      
+
       document.getElementById("select_grupo_ganado").innerHTML = llenardata;
       //document.getElementById("select_grupo_ganado").value = "";
       datatotalgrupo = data.length;
@@ -171,7 +174,6 @@ function cargargrupoganado() {
   });
 }
 function cargarganado(grupoid) {
-  
   $.ajax({
     type: "POST",
     url: "controller/ventas/cargargrupoganado.php",
@@ -184,14 +186,12 @@ function cargarganado(grupoid) {
     let i;
     let idganado;
     if (data.length > 0) {
-      if(data.length == 1){
+      if (data.length == 1) {
         localStorage.setItem("idganadoescogido", data[0][0]);
-        
       }
       for (i = 0; i < data.length; i++) {
         if (i == 0) {
           idganado = data[i][0];
-          
         }
 
         llenardata +=
@@ -241,7 +241,9 @@ function cargarGanadoInput(grupoid) {
 
 function registrargrupoVenta() {
   let comprador = document.getElementById("select_comprador").value;
-  let transportista = document.getElementById("select_transportista_lista_venta").value;
+  let transportista = document.getElementById(
+    "select_transportista_lista_venta"
+  ).value;
   localStorage.setItem("comprador", comprador);
   localStorage.setItem("transportistacomprador", transportista);
   if (comprador.length == 0 || transportista.length == 0) {
@@ -259,7 +261,6 @@ function registrargrupoVenta() {
   }).done(function (resp) {
     localStorage.setItem("compra", parseInt(resp) + 1);
     registrarpagoZonaVenta();
-    
   });
   return false;
 }
@@ -286,8 +287,6 @@ function registroGanadoVenta() {
     processData: false,
     success: function (resp) {
       if (resp > 0) {
-        //validarInput("nombre","apellido","documento");
-
         Swal.fire(
           "Mensaje de confirmacion",
           "Agregado con exito",
@@ -309,7 +308,6 @@ function registroGanadoVenta() {
 }
 
 function recargarfunciones() {
-  
   document.getElementById("Color_zonaventa").value = "";
   document.getElementById("Sexo_zonaventa").value = "";
   document.getElementById("Salud_zonaventa").value = "";
@@ -320,7 +318,7 @@ function recargarfunciones() {
   document.getElementById("Aretes_zonaventa").value = "";
   document.getElementById("Descripcion_zonaventa").value = "";
   document.getElementById("Edad_zonaventa").value = "";
-  
+
   cargargrupoganado();
   $("#select_grupo_ganado").change(function () {
     var grupoid = $("#select_grupo_ganado").val();
@@ -334,39 +332,40 @@ function recargarfunciones() {
 var ltbl_ganado_simple_vendidos_zona;
 function lista_ganado_simple_vendidos_zona() {
   let idGrupo = localStorage.getItem("compra");
-  ltbl_ganado_simple_vendidos_zona = $("#tabla_ganado_vendidos_zona").DataTable({
-    
-    ajax: {
-      url: "controller/ventas/ganadolistarventa.php",
-      type: "POST",
-      data: {
-        id: idGrupo,
+  ltbl_ganado_simple_vendidos_zona = $("#tabla_ganado_vendidos_zona").DataTable(
+    {
+      ajax: {
+        url: "controller/ventas/ganadolistarventa.php",
+        type: "POST",
+        data: {
+          id: idGrupo,
+        },
       },
-    },
-    columns: [
-      { defaultContent: "" },
-      { data: "Raza" },
-      { data: "Sexo" },
-      { data: "Peso" },
-      { data: "Edad" },
-      { data: "Color" },
-      { data: "Aretes" },
-      { data: "Marca" },
-      { data: "Salud" },
-      { data: "Descripcion" },
-      { data: "Precio" },
-      { data: "Id_Grupo" },
-      { data: "Grupo_Venta" },
-    ],
-    pageLength: 9,
-    destroy: true,
-    async: false,
-    processing: true,
-    bLengthChange: false,
-    language: idioma_espanol,
-    select: true,
-    scrollX:true,
-  });
+      columns: [
+        { defaultContent: "" },
+        { data: "Raza" },
+        { data: "Sexo" },
+        { data: "Peso" },
+        { data: "Edad" },
+        { data: "Color" },
+        { data: "Aretes" },
+        { data: "Marca" },
+        { data: "Salud" },
+        { data: "Descripcion" },
+        { data: "Precio" },
+        { data: "Id_Grupo" },
+        { data: "Grupo_Venta" },
+      ],
+      pageLength: 9,
+      destroy: true,
+      async: false,
+      processing: true,
+      bLengthChange: false,
+      language: idioma_espanol,
+      select: true,
+      scrollX: true,
+    }
+  );
   ltbl_ganado_simple_vendidos_zona.on("draw.td", function () {
     let pageInfo = $("#tabla_ganado_vendidos_zona").DataTable().page.info();
     ltbl_ganado_simple_vendidos_zona
@@ -381,8 +380,12 @@ function registrarpagoZonaVenta() {
   let pago_parcial = document.getElementById("pagoparcialZonaVenta").value;
   let Biatico_Final = document.getElementById("BiaticoInicioZonaVenta").value;
   let Biatico_Extras = document.getElementById("BiaticoExtrasZonaVenta").value;
-  let Biatico_Personal = document.getElementById("BiaticoPersonalZonaVenta").value;
-  let Biatico_Empresa = document.getElementById("BiaticoEmpresaZonaVenta").value;
+  let Biatico_Personal = document.getElementById(
+    "BiaticoPersonalZonaVenta"
+  ).value;
+  let Biatico_Empresa = document.getElementById(
+    "BiaticoEmpresaZonaVenta"
+  ).value;
   let ubicacion = document.getElementById("ubicacion_venta").value;
   if (pago_parcial.length == 0) {
     pago_parcial = 0;
@@ -400,7 +403,7 @@ function registrarpagoZonaVenta() {
     Biatico_Empresa = 0;
   }
   if (ubicacion.length == 0) {
-    return  Swal.fire("Mensaje de advertencia", "Complete los datos", "warning");
+    return Swal.fire("Mensaje de advertencia", "Complete los datos", "warning");
   }
   let pagototalbiatico =
     parseFloat(Biatico_Final) +
@@ -447,12 +450,12 @@ function actualizarpagosganado() {
     );
   } else {
     Swal.fire({
-      title: "Esta seguro que desea guardar el registro completo de lista ganado?, podra rectificarlo en vista general de ventas",
+      title:
+        "Esta seguro que desea guardar el registro completo de lista ganado?, podra rectificarlo en vista general de ventas",
       showDenyButton: true,
       confirmButtonText: "guardar",
       denyButtonText: `no guardar`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         let idGrupo = localStorage.getItem("compra");
         let pagoparcial = localStorage.getItem("pgbiatc");

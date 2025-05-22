@@ -2,14 +2,14 @@
     require_once 'modelo_conexion.php';
 
     class Modelo_Venta extends conexionBD{
-        
+
         public function listar_comprador(){
             $c = conexionBD::conexionPDO();
             $sql = "CALL LISTAR_COMPRADOR()";
             $arreglo = array();
             $query = $c->prepare($sql);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -22,7 +22,7 @@
             $arreglo = array();
             $query = $c->prepare($sql);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -35,7 +35,7 @@
             $arreglo = array();
             $query = $c->prepare($sql);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -75,7 +75,7 @@
             $query = $c->prepare($sql);
             $query->bindParam(1,$idgrupo);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -89,7 +89,7 @@
             $query = $c->prepare($sql);
             $query->bindParam(1,$idgrupo);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -103,7 +103,7 @@
             $query = $c->prepare($sql);
             $query->bindParam(1,$idGrupoVenta);
             $query->execute();
-            $resultado = $query->fetchAll(PDO::FETCH_ASSOC); //
+            $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
             foreach($resultado as $resp){
                 $arreglo["data"][] = $resp;
             }
@@ -117,7 +117,7 @@
             $query = $c->prepare($sql);
             $query->bindParam(1,$idgrupo);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -131,7 +131,7 @@
             $query = $c->prepare($sql);
             $query->bindParam(1,$idgrupo);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -151,14 +151,14 @@
         public function registrar_Ganado($idGrupoVenta,$idGanadoRegistro,$idpagoventa,$comprador,$transportista){
             $c = conexionBD::conexionPDO();
             $sql = "CALL REGISTRAR_GANADO_VENTA(?,?,?,?,?)";
-            $query = $c->prepare($sql);      
+            $query = $c->prepare($sql);
             $query->bindParam(1,$idGanadoRegistro);
             $query->bindParam(2,$idGrupoVenta);
             $query->bindParam(3,$comprador);
             $query->bindParam(4,$transportista);
-            $query->bindParam(5,$idpagoventa); 
+            $query->bindParam(5,$idpagoventa);
             $resultado = $query->execute();
-            
+
             if($resultado){
                 return  1;
             }else{
@@ -178,7 +178,7 @@
             $query->bindParam(6,$pagototalbiatico);
             $query->bindParam(7,$ubicacion);
             $resultado = $query->execute();
-            
+
             if($row = $query->fetchColumn()){
                 return $row;
             }
@@ -188,12 +188,12 @@
         public function actualizar_pago_venta($idgrupo,$pago_parcial,$idpago){
             $c = conexionBD::conexionPDO();
             $sql = "CALL ACTUALIZAR_PAGO_VENTA(?,?,?)";
-            $query = $c->prepare($sql);      
+            $query = $c->prepare($sql);
             $query->bindParam(1,$idgrupo);
             $query->bindParam(2,$pago_parcial);
             $query->bindParam(3,$idpago);
             $resultado = $query->execute();
-            
+
             if($resultado){
                 return  1;
             }else{
@@ -204,10 +204,10 @@
         public function actualizar_pago_todo_lista_Venta($idpago23){
             $c = conexionBD::conexionPDO();
             $sql = "CALL ACTUALIZAR_PAGO_VENTA_PRECIO_UNIDAD_DEVERDAD(?)";
-            $query = $c->prepare($sql);      
+            $query = $c->prepare($sql);
             $query->bindParam(1,$idpago23);
             $resultado = $query->execute();
-            
+
             if($resultado){
                 return  1;
             }else{

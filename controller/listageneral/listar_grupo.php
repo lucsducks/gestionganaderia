@@ -1,15 +1,18 @@
 <?php
-    require '../../model/modelo_listar.php';
-    $ML = new Modelo_listar();
-    $consulta = $ML->listar_grupo();
-    if($consulta){
-        echo json_encode($consulta);
-    }else{
-        echo '{
-            "sEcho":1,
-            "iTotalRecords":"0",
-            "iTotalDisplayRecords":"0",
-            "aaData":[]
-        }';
-    }
-?>  
+require '../../model/modelo_listar.php';
+
+$ML = new Modelo_listar();
+$consulta = $ML->listar_grupo();
+
+header('Content-Type: application/json');
+
+if (isset($consulta['error']) && $consulta['error'] === true) {
+    echo json_encode([
+        "data" => [],
+        "error" => $consulta['message']
+    ]);
+    exit;
+}
+
+echo json_encode($consulta, JSON_UNESCAPED_UNICODE);
+?>

@@ -9,7 +9,7 @@
             $query = $c->prepare($sql);
             $query->bindParam(1,$dni);
             $query->execute();
-            $resultado = $query->fetchAll(PDO::FETCH_ASSOC); //
+            $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
             foreach($resultado as $resp){
                 $arreglo["data"][] = $resp;
             }
@@ -72,7 +72,7 @@
             }
             conexionBD::cerrar($c);
         }
-        
+
 
     }
 

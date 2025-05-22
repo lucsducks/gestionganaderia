@@ -68,7 +68,7 @@
                     <span>Precio</span>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistro()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="modificargrupo()">Registrar grupo</button>
@@ -127,7 +127,7 @@
                     <span>Precio unidad</span>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalganadoactualizadolistaventa()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="actualizarpagototalganado()">Guardar</button>
@@ -209,7 +209,7 @@
                     <span>Peso Actual</span>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalganadoactualizadolistaventaPrecioUnidad()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="actualizarpagototalganadoPrecioUnidad()">Guardar</button>

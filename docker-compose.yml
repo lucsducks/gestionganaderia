@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_empresa
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: empresa
+      MYSQL_DATABASE: empresa
+      MYSQL_USER: empresa
+      MYSQL_PASSWORD: empresa
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_server
+    restart: always
+    depends_on:
+      - mysql
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8080:80"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: empresa
+    restart: always
+
+volumes:
+  mysql_data:

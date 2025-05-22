@@ -5,7 +5,9 @@ var modal_container_grupo = document.getElementById("modal_grupo_editar1");
 function cerrarmodalregistro() {
   modal_container_grupo.classList.remove("show");
 }
-var modal_container_ganado_ganancias = document.getElementById("modal_ganado_grupo1_ganancias");
+var modal_container_ganado_ganancias = document.getElementById(
+  "modal_ganado_grupo1_ganancias"
+);
 function abrirmodalganado_ganancias() {
   modal_container_ganado_ganancias.classList.add("show");
   compradorgeneralganancia();
@@ -19,26 +21,29 @@ function cerrarmodalpagototal() {
   modar_container_pagos_totales.classList.remove("show");
 }
 // tabla simpleee filtadra
-function sacarganancias(){
+function sacarganancias() {
   // rellenarga();
   sumapreciocompratotal();
   sumaprecioventatotal();
   ganancias();
-  document.getElementById('ptc').value = localStorage.getItem("sumapreciocompratotal");
-  document.getElementById('pvt').value = localStorage.getItem("sumaprecioventatotal");
-  let ptcd = localStorage.getItem("sumapreciocompratotal")
+  document.getElementById("ptc").value = localStorage.getItem(
+    "sumapreciocompratotal"
+  );
+  document.getElementById("pvt").value = localStorage.getItem(
+    "sumaprecioventatotal"
+  );
+  let ptcd = localStorage.getItem("sumapreciocompratotal");
   let ptvd = localStorage.getItem("sumaprecioventatotal");
   gancnaistotal((ptvd - ptcd).toFixed(2));
-  
 }
-function gancnaistotal(valor){
-  document.getElementById('ga').value = valor;
+function gancnaistotal(valor) {
+  document.getElementById("ga").value = valor;
   modar_container_pagos_totales.classList.add("show");
 }
 
 var tbl_ganancias;
 function lista_ganancias() {
-  let dni_buscar =document.getElementById("dni_buscar").value; 
+  let dni_buscar = document.getElementById("dni_buscar").value;
   if (dni_buscar.length == 0) {
     dni_buscar = 1;
   }
@@ -70,7 +75,7 @@ function lista_ganancias() {
       { data: "cantidad" },
       { data: "precio_compra" },
       { data: "gasto_inicial" },
-      { data: "precio_compra_total"},
+      { data: "precio_compra_total" },
       { data: "precio_venta" },
       { data: "gasto_final" },
       { data: "precio_venta_total" },
@@ -78,11 +83,11 @@ function lista_ganancias() {
         data: "ganancia",
         render: function (data, type, row) {
           if (parseFloat(data) < 0) {
-            return '<span class="danger">'+ data + '</span>';
-          } else  if(parseFloat(data) > 0){
-            return '<span class="success">'+ data + '</span>';
-          }else {
-            return '<span class="danger">'+ data + '</span>';
+            return '<span class="danger">' + data + "</span>";
+          } else if (parseFloat(data) > 0) {
+            return '<span class="success">' + data + "</span>";
+          } else {
+            return '<span class="danger">' + data + "</span>";
           }
         },
       },
@@ -93,38 +98,30 @@ function lista_ganancias() {
     ],
     language: idioma_espanol,
     select: true,
-    scrollX:true,
-    
+    scrollX: true,
   });
-
-    
 }
 
-function sumapreciocompratotal (){
-  var table = $('#tabla_ganancias').DataTable();
+function sumapreciocompratotal() {
+  var table = $("#tabla_ganancias").DataTable();
   var pruebita = table.column(8).data().sum();
-  localStorage.setItem("sumapreciocompratotal",pruebita.toFixed(2));
+  localStorage.setItem("sumapreciocompratotal", pruebita.toFixed(2));
 }
-function sumaprecioventatotal(){
-  var table = $('#tabla_ganancias').DataTable();
+function sumaprecioventatotal() {
+  var table = $("#tabla_ganancias").DataTable();
   var pruebita = table.column(11).data().sum();
-  localStorage.setItem("sumaprecioventatotal",pruebita.toFixed(2));
+  localStorage.setItem("sumaprecioventatotal", pruebita.toFixed(2));
 }
-function ganancias(){
-  var table = $('#tabla_ganancias').DataTable();
+function ganancias() {
+  var table = $("#tabla_ganancias").DataTable();
   var pruebita = table.column(12).data().sum();
-  localStorage.setItem("gananciastotales",pruebita.toFixed(2));
+  localStorage.setItem("gananciastotales", pruebita.toFixed(2));
 }
-
-
-
-//--------------cargar selecccion de proveedor----------------
 
 //----------------editar vendedor-----------------------
 function editarmodal() {
-  
   $("#tabla_ganancias").on("click", ".seleccionar", function () {
-    var data = tbl_ganancias.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_ganancias.row($(this).parents("tr")).data();
     localStorage.setItem("grupoidgananciaventa", data["Grupo_Venta"]);
     abrirmodalganadogrupo1.classList.add("show");
     lista_ganado_simple_ganancias();
@@ -177,7 +174,7 @@ function lista_ganado_simple_ganancias() {
     processing: true,
     language: idioma_espanol,
     select: true,
-    scrollX:true,
+    scrollX: true,
   });
   tbl_ganado_simple1.on("draw.td", function () {
     let pageInfo = $("#tabla_ganado_ganancias").DataTable().page.info();
@@ -188,17 +185,13 @@ function lista_ganado_simple_ganancias() {
         cell.innerHTML = i + 1 + pageInfo.start;
       });
   });
-  
 }
-
 
 function abrirmodalganadogrupo1() {
   $("#tabla_ganancias").on("click", ".seleccionar", function () {
-    var data = tbl_ganancias.row($(this).parents("tr")).data(); //tamano escritorio
+    var data = tbl_ganancias.row($(this).parents("tr")).data();
     localStorage.setItem("grupoidgananciaventa", data["Grupo_Venta"]);
     lista_ganado_simple_ganancias();
   });
   modal_container_ganado_ganancias.classList.add("show");
 }
-//----------funcion para seleccionar grupo modal------------------------
-

@@ -8,7 +8,7 @@
             $arreglo = array();
             $query = $c->prepare($sql);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -21,7 +21,7 @@
             $arreglo = array();
             $query = $c->prepare($sql);
             $query->execute();
-            $resultado = $query->fetchAll(); //
+            $resultado = $query->fetchAll();
             foreach($resultado as $resp){
                 $arreglo[] = $resp;
             }
@@ -47,7 +47,7 @@
             $query = $c->prepare($sql);
             $query->bindParam(1,$id);
             $query->execute();
-            $resultado = $query->fetchAll(PDO::FETCH_ASSOC); //
+            $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
             foreach($resultado as $resp){
                 $arreglo["data"][] = $resp;
             }
@@ -74,7 +74,7 @@
             $query->bindParam(14,$idPago);
             $query->bindParam(15,$edadtipo);
             $resultado = $query->execute();
-            
+
             if($row = $query->fetchColumn()){
                 return $row;
             }
@@ -99,7 +99,7 @@
             $query->bindParam(13,$idPago);
             $query->bindParam(14,$edadtipo);
             $resultado = $query->execute();
-            
+
             if($resultado){
                 return 1;
             }else{
@@ -123,7 +123,7 @@
             $query->bindParam(10,$edad);
             $query->bindParam(11,$precio);
             $resultado = $query->execute();
-            
+
             if($resultado){
                 return 1;
             }else{
@@ -154,7 +154,7 @@
             $query->bindParam(7,$ubicacion);
             $query->bindParam(8,$preciounidadganado);
             $resultado = $query->execute();
-            
+
             if($row = $query->fetchColumn()){
                 return $row;
             }
@@ -174,7 +174,7 @@
             $query->bindParam(8,$ubicacion);
             $query->bindParam(9,$preciounidadganado);
             $resultado = $query->execute();
-            
+
             if($row = $query->fetchColumn()){
                 return $row;
             }

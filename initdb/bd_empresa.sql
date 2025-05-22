@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
--- Host: localhost    Database: empresa
+-- Host: 127.0.0.1    Database: empresa
 -- ------------------------------------------------------
--- Server version	8.0.31
+-- Server version	9.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `comprador`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comprador` (
   `Id_Comprador` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(30) DEFAULT NULL,
-  `Apellido` varchar(30) DEFAULT NULL,
-  `Documento` varchar(10) DEFAULT NULL,
-  `RUC` varchar(15) DEFAULT NULL,
+  `Nombre` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Apellido` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Documento` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `RUC` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id_Comprador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `comprador` (
 
 LOCK TABLES `comprador` WRITE;
 /*!40000 ALTER TABLE `comprador` DISABLE KEYS */;
+INSERT INTO `comprador` VALUES (1,'asdasd','asdasd','3211232','31221');
 /*!40000 ALTER TABLE `comprador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +57,7 @@ CREATE TABLE `fechapago` (
   PRIMARY KEY (`Id_Fecha_Pago`),
   KEY `Id_Pago` (`Id_Pago`),
   CONSTRAINT `fechapago_ibfk_1` FOREIGN KEY (`Id_Pago`) REFERENCES `pago` (`Id_Pago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +66,7 @@ CREATE TABLE `fechapago` (
 
 LOCK TABLES `fechapago` WRITE;
 /*!40000 ALTER TABLE `fechapago` DISABLE KEYS */;
+INSERT INTO `fechapago` VALUES (1,31,'2025-05-22',32),(2,32,'2025-05-22',3223);
 /*!40000 ALTER TABLE `fechapago` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,7 +78,7 @@ DROP TABLE IF EXISTS `listado_biatico`;
 /*!50001 DROP VIEW IF EXISTS `listado_biatico`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `listado_biatico` AS SELECT 
+/*!50001 CREATE VIEW `listado_biatico` AS SELECT
  1 AS `Id_Pago`,
  1 AS `proveedor`,
  1 AS `comprador`,
@@ -102,7 +104,7 @@ DROP TABLE IF EXISTS `listado_comprador`;
 /*!50001 DROP VIEW IF EXISTS `listado_comprador`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `listado_comprador` AS SELECT 
+/*!50001 CREATE VIEW `listado_comprador` AS SELECT
  1 AS `Id_Comprador`,
  1 AS `Nombre`,
  1 AS `Apellido`,
@@ -118,7 +120,7 @@ DROP TABLE IF EXISTS `listado_grupo_ventas`;
 /*!50001 DROP VIEW IF EXISTS `listado_grupo_ventas`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `listado_grupo_ventas` AS SELECT 
+/*!50001 CREATE VIEW `listado_grupo_ventas` AS SELECT
  1 AS `Grupo_Venta`,
  1 AS `Fecha`,
  1 AS `Id_Pago`,
@@ -140,7 +142,7 @@ DROP TABLE IF EXISTS `listado_proveedor`;
 /*!50001 DROP VIEW IF EXISTS `listado_proveedor`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `listado_proveedor` AS SELECT 
+/*!50001 CREATE VIEW `listado_proveedor` AS SELECT
  1 AS `Id_Proveedor`,
  1 AS `Nombre`,
  1 AS `Apellido`,
@@ -156,7 +158,7 @@ DROP TABLE IF EXISTS `listado_transportista`;
 /*!50001 DROP VIEW IF EXISTS `listado_transportista`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `listado_transportista` AS SELECT 
+/*!50001 CREATE VIEW `listado_transportista` AS SELECT
  1 AS `Id_Transportista`,
  1 AS `Placa`,
  1 AS `Licencia`,
@@ -182,12 +184,12 @@ CREATE TABLE `pago` (
   `Biatico_Personal` float DEFAULT '0',
   `Biatico_Empresa` float DEFAULT '0',
   `Fecha` date DEFAULT NULL,
-  `Ubicacion` text,
-  `Estado` enum('PAGADO','DEUDA') DEFAULT NULL,
+  `Ubicacion` text COLLATE utf8mb4_general_ci,
+  `Estado` enum('PAGADO','DEUDA') COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Precio_Unidad` float DEFAULT '0',
-  `Tipo` enum('COMPRA','VENTA') DEFAULT NULL,
+  `Tipo` enum('COMPRA','VENTA') COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id_Pago`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,6 +198,7 @@ CREATE TABLE `pago` (
 
 LOCK TABLES `pago` WRITE;
 /*!40000 ALTER TABLE `pago` DISABLE KEYS */;
+INSERT INTO `pago` VALUES (31,322,32,290,234,0,2323,2323,1232,'2025-05-22','3223',NULL,0,'COMPRA'),(32,0,3223,0,0,32232,322332,32323,3223,'2025-05-22','dsasddsa',NULL,0,'VENTA');
 /*!40000 ALTER TABLE `pago` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,12 +211,12 @@ DROP TABLE IF EXISTS `proveedor`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proveedor` (
   `Id_Proveedor` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(30) DEFAULT NULL,
-  `Apellido` varchar(30) DEFAULT NULL,
-  `Documento` varchar(10) DEFAULT NULL,
-  `ruc` varchar(20) DEFAULT NULL,
+  `Nombre` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Apellido` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Documento` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ruc` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id_Proveedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,6 +225,7 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
+INSERT INTO `proveedor` VALUES (1,'sdfsadf','kjasdlkjasldk','238238','3822832823');
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,23 +238,23 @@ DROP TABLE IF EXISTS `registrodeganado`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `registrodeganado` (
   `Id_Registro_Ganado` int NOT NULL AUTO_INCREMENT,
-  `Raza` varchar(20) DEFAULT NULL,
+  `Raza` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Peso` float DEFAULT '0',
-  `Color` varchar(20) DEFAULT NULL,
-  `Sexo` varchar(1) DEFAULT NULL,
-  `Salud` varchar(4) DEFAULT NULL,
-  `Marca` varchar(10) DEFAULT NULL,
-  `Aretes` varchar(10) DEFAULT NULL,
-  `Descripcion` text,
+  `Color` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Sexo` varchar(1) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Salud` varchar(4) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Marca` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Aretes` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Descripcion` text COLLATE utf8mb4_general_ci,
   `Id_Grupo` int DEFAULT NULL,
   `Edad` int DEFAULT NULL,
   `Precio` float DEFAULT '0',
   `Id_Proveedor` int DEFAULT NULL,
   `Id_Transportista` int DEFAULT NULL,
-  `Estado` enum('DISPONIBLE','VENDIDO') DEFAULT NULL,
+  `Estado` enum('DISPONIBLE','VENDIDO') COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Biatico_Ganado` float DEFAULT '0',
   `Id_Pago` int DEFAULT NULL,
-  `Tipo` varchar(45) DEFAULT 'Meses',
+  `Tipo` varchar(45) COLLATE utf8mb4_general_ci DEFAULT 'Meses',
   PRIMARY KEY (`Id_Registro_Ganado`),
   KEY `Id_Proveedor` (`Id_Proveedor`),
   KEY `Id_Transportista` (`Id_Transportista`),
@@ -258,7 +262,7 @@ CREATE TABLE `registrodeganado` (
   CONSTRAINT `registrodeganado_ibfk_1` FOREIGN KEY (`Id_Proveedor`) REFERENCES `proveedor` (`Id_Proveedor`),
   CONSTRAINT `registrodeganado_ibfk_2` FOREIGN KEY (`Id_Transportista`) REFERENCES `transportista` (`Id_Transportista`),
   CONSTRAINT `registrodeganado_ibfk_3` FOREIGN KEY (`Id_Pago`) REFERENCES `pago` (`Id_Pago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,6 +271,7 @@ CREATE TABLE `registrodeganado` (
 
 LOCK TABLES `registrodeganado` WRITE;
 /*!40000 ALTER TABLE `registrodeganado` DISABLE KEYS */;
+INSERT INTO `registrodeganado` VALUES (1,'sadhskd',3223,'asdasd','H','bien','kjhjk','dhjk','da',2,13,322,1,1,'VENDIDO',6112,31,'Meses');
 /*!40000 ALTER TABLE `registrodeganado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +302,7 @@ CREATE TABLE `registroventaganado` (
   CONSTRAINT `registroventaganado_ibfk_2` FOREIGN KEY (`Id_Comprador`) REFERENCES `comprador` (`Id_Comprador`),
   CONSTRAINT `registroventaganado_ibfk_3` FOREIGN KEY (`Id_Transportista`) REFERENCES `transportista` (`Id_Transportista`),
   CONSTRAINT `registroventaganado_ibfk_4` FOREIGN KEY (`Id_Pago_Venta`) REFERENCES `pago` (`Id_Pago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,6 +311,7 @@ CREATE TABLE `registroventaganado` (
 
 LOCK TABLES `registroventaganado` WRITE;
 /*!40000 ALTER TABLE `registroventaganado` DISABLE KEYS */;
+INSERT INTO `registroventaganado` VALUES (1,1,2,1,2,32,390110,0,0,0);
 /*!40000 ALTER TABLE `registroventaganado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,12 +324,12 @@ DROP TABLE IF EXISTS `transportista`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transportista` (
   `Id_Transportista` int NOT NULL AUTO_INCREMENT,
-  `Placa` varchar(10) DEFAULT NULL,
-  `Licencia` varchar(20) DEFAULT NULL,
-  `Documento` varchar(10) DEFAULT NULL,
-  `RUC` varchar(15) DEFAULT NULL,
+  `Placa` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Licencia` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Documento` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `RUC` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id_Transportista`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,7 +338,7 @@ CREATE TABLE `transportista` (
 
 LOCK TABLES `transportista` WRITE;
 /*!40000 ALTER TABLE `transportista` DISABLE KEYS */;
-INSERT INTO `transportista` VALUES (1,'NINGUNO','NINGUNO','00000000','00000000000');
+INSERT INTO `transportista` VALUES (1,'NINGUNO','NINGUNO','00000000','00000000000'),(2,'xd','asdas','432332','32322232');
 /*!40000 ALTER TABLE `transportista` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,11 +351,11 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `Id_Usuario` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(30) DEFAULT NULL,
-  `Apellido` varchar(30) DEFAULT NULL,
-  `Usuario` varchar(30) DEFAULT NULL,
-  `Documento` varchar(10) DEFAULT NULL,
-  `Pass` varchar(120) DEFAULT NULL,
+  `Nombre` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Apellido` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Usuario` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Documento` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Pass` varchar(120) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`Id_Usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -360,7 +366,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Nicolas','Leon Nolasco','nicolas1210','22664898','$2y$10$DVBg1SJLCSw.DusLNVuKCuNcGQ5Yh1GqpTxHT5yApAsW2HRw0F0vG');
+INSERT INTO `usuario` VALUES (1,'Demo','Demo','demo','12345678','$2y$10$mn1Prk6e7dhGo5q.NcRPDuOzR/5jtthcNoCLQysxY0JWJ9HHR4YDy');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,7 +387,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZACION_PAGO_GENERAL`(IN IDP INT, IN PT FLOAT, IN PP FLOAT, 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZACION_PAGO_GENERAL`(IN IDP INT, IN PT FLOAT, IN PP FLOAT,
 
 IN BI FLOAT, IN BF FLOAT, IN BE FLOAT, IN BP FLOAT, IN BEM FLOAT, IN PRU FLOAT )
 BEGIN
@@ -422,7 +428,7 @@ Biatico_Personal =  @BPERSONAL+ BP,
 
 Biatico_Empresa = @BEMPRESA + BEM,
 
-Precio_Unidad = PRU 
+Precio_Unidad = PRU
 
 WHERE Id_Pago = IDP;
 
@@ -522,9 +528,9 @@ Peso_Actual = PESOT,
 
 Precio_Unitario = PRECIOUNI,
 
-Precio_Final = PESOT * PRECIOUNI 
+Precio_Final = PESOT * PRECIOUNI
 
-WHERE 
+WHERE
 
  Id_Venta_Ganado = IDGV;
 
@@ -557,9 +563,9 @@ Peso_Actual = PESOT,
 
 Precio_Unitario = PRECIOUNI,
 
-Precio_Final = PESOT * PRECIOUNI 
+Precio_Final = PESOT * PRECIOUNI
 
-WHERE 
+WHERE
 
  Id_Ganado_Registro = IDGV;
 
@@ -586,7 +592,7 @@ BEGIN
 
 	SET @E:= (select Pago_Total from empresa.pago  where Id_Pago =  IDPAGOT );
 
-	
+
 
 	SET @D:= (SELECT Pago_Parcial FROM empresa.pago WHERE Id_Pago = IDPAGOT);
 
@@ -600,7 +606,7 @@ BEGIN
 
 	UPDATE registrodeganado SET Biatico_Ganado = @I WHERE Id_Grupo = IDGRUPOT;
 
-	
+
 
 	UPDATE registrodeganado SET Precio = @F WHERE Id_Grupo = IDGRUPOT;
 
@@ -741,7 +747,7 @@ ELSE
 
 END IF;
 
-	
+
 
 END ;;
 DELIMITER ;
@@ -811,13 +817,13 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_VENTA_PRECIO_UNIDAD_DEVERDAD`(IN IDGV INT)
 BEGIN
 
-SET @C:=(SELECT Id_Pago_Venta from registroventaganado WHERE Id_Ganado_Registro = IDGV);	
+SET @C:=(SELECT Id_Pago_Venta from registroventaganado WHERE Id_Ganado_Registro = IDGV);
 
-SET @E:=(SELECT Grupo_Venta from registroventaganado WHERE Id_Ganado_Registro = IDGV);	
+SET @E:=(SELECT Grupo_Venta from registroventaganado WHERE Id_Ganado_Registro = IDGV);
 
-SET @D:=(SELECT sum(Precio_Final) from registroventaganado WHERE Grupo_Venta = @E);	
+SET @D:=(SELECT sum(Precio_Final) from registroventaganado WHERE Grupo_Venta = @E);
 
-SET @F:=(SELECT Pago_Parcial from pago WHERE Id_Pago = @C);	
+SET @F:=(SELECT Pago_Parcial from pago WHERE Id_Pago = @C);
 
 UPDATE empresa.pago SET
 
@@ -846,13 +852,13 @@ BEGIN
 
 
 
-SET @C:=(SELECT Id_Pago_Venta from registroventaganado WHERE Id_Ganado_Registro = IDGV);	
+SET @C:=(SELECT Id_Pago_Venta from registroventaganado WHERE Id_Ganado_Registro = IDGV);
 
-SET @E:=(SELECT Grupo_Venta from registroventaganado WHERE Id_Venta_Ganado = IDGV);	
+SET @E:=(SELECT Grupo_Venta from registroventaganado WHERE Id_Venta_Ganado = IDGV);
 
-SET @D:=(SELECT sum(Precio_Final) from registroventaganado WHERE Grupo_Venta = @E);	
+SET @D:=(SELECT sum(Precio_Final) from registroventaganado WHERE Grupo_Venta = @E);
 
-SET @F:=(SELECT Pago_Parcial from pago WHERE Id_Pago = @C);	
+SET @F:=(SELECT Pago_Parcial from pago WHERE Id_Pago = @C);
 
 UPDATE empresa.pago SET
 
@@ -896,7 +902,7 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_BIATICO_PAGO`(IN ID_PAGO32 INT)
-DELETE FROM fechapago WHERE fechapago.Id_Pago = ID_PAGO32; ;;
+DELETE FROM fechapago WHERE fechapago.Id_Pago = ID_PAGO32 ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -996,23 +1002,23 @@ SELECT
 
 	registroventaganado.Grupo_Venta,
 
-	pago.Fecha, 
+	pago.Fecha,
 
 	CONCAT_WS(' ',comprador.Nombre,comprador.Apellido) AS nombre,
 
 	comprador.Documento,
 
-	transportista.Licencia, 
+	transportista.Licencia,
 
-	pago.Id_Pago, 
+	pago.Id_Pago,
 
-	count(Grupo_Venta) AS cantidad, 
+	count(Grupo_Venta) AS cantidad,
 
-	pago.Ubicacion, 
+	pago.Ubicacion,
 
-	pago.Precio_Unidad, 
+	pago.Precio_Unidad,
 
-	TRUNCATE(pago.Pago_Total,2) AS Pago_Total, 
+	TRUNCATE(pago.Pago_Total,2) AS Pago_Total,
 
 	TRUNCATE(pago.Restante,2) AS Restante,
 
@@ -1028,7 +1034,7 @@ FROM
 
 	pago
 
-	ON 
+	ON
 
 		registroventaganado.Id_Pago_Venta = pago.Id_Pago
 
@@ -1036,7 +1042,7 @@ FROM
 
 	comprador
 
-	ON 
+	ON
 
 		registroventaganado.Id_Comprador = comprador.Id_Comprador
 
@@ -1044,7 +1050,7 @@ FROM
 
 			registrodeganado
 
-			ON 
+			ON
 
 				registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
 
@@ -1054,7 +1060,7 @@ FROM
 
 	transportista
 
-	ON 
+	ON
 
 		registroventaganado.Id_Transportista = transportista.Id_Transportista
 
@@ -1066,23 +1072,23 @@ SELECT
 
 	registroventaganado.Grupo_Venta,
 
-	pago.Fecha, 
+	pago.Fecha,
 
 	CONCAT_WS(' ',comprador.Nombre,comprador.Apellido) AS nombre,
 
 	comprador.Documento,
 
-	transportista.Licencia, 
+	transportista.Licencia,
 
-	pago.Id_Pago, 
+	pago.Id_Pago,
 
-	count(Grupo_Venta) AS cantidad, 
+	count(Grupo_Venta) AS cantidad,
 
-	pago.Ubicacion, 
+	pago.Ubicacion,
 
-	pago.Precio_Unidad, 
+	pago.Precio_Unidad,
 
-	TRUNCATE(pago.Pago_Total,2) AS Pago_Total, 
+	TRUNCATE(pago.Pago_Total,2) AS Pago_Total,
 
 	TRUNCATE(pago.Restante,2) AS Restante
 
@@ -1094,7 +1100,7 @@ FROM
 
 	pago
 
-	ON 
+	ON
 
 		registroventaganado.Id_Pago_Venta = pago.Id_Pago
 
@@ -1102,7 +1108,7 @@ FROM
 
 	comprador
 
-	ON 
+	ON
 
 		registroventaganado.Id_Comprador = comprador.Id_Comprador
 
@@ -1110,7 +1116,7 @@ FROM
 
 	transportista
 
-	ON 
+	ON
 
 		registroventaganado.Id_Transportista = transportista.Id_Transportista
 
@@ -1143,25 +1149,25 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_BIATICO`()
 SELECT
 
-	pago.Id_Pago, 
+	pago.Id_Pago,
 
-	TRUNCATE(pago.Pago_Total,2)as Pago_Total, 
+	TRUNCATE(pago.Pago_Total,2)as Pago_Total,
 
-	TRUNCATE(pago.Pago_Parcial,2) as Pago_Parcial, 
+	TRUNCATE(pago.Pago_Parcial,2) as Pago_Parcial,
 
-	TRUNCATE(pago.Restante,2) as Restante, 
+	TRUNCATE(pago.Restante,2) as Restante,
 
-	TRUNCATE(pago.Biatico_Inicio,2) as Biatico_Inicio, 
+	TRUNCATE(pago.Biatico_Inicio,2) as Biatico_Inicio,
 
-	TRUNCATE(pago.Biatico_Final,2) as Biatico_Final, 
+	TRUNCATE(pago.Biatico_Final,2) as Biatico_Final,
 
-	TRUNCATE(pago.Biatico_Extras,2) as Biatico_Extras, 
+	TRUNCATE(pago.Biatico_Extras,2) as Biatico_Extras,
 
-	TRUNCATE(pago.Biatico_Personal,2) as Biatico_Personal, 
+	TRUNCATE(pago.Biatico_Personal,2) as Biatico_Personal,
 
-	TRUNCATE(pago.Biatico_Empresa,2) as Biatico_Empresa, 
+	TRUNCATE(pago.Biatico_Empresa,2) as Biatico_Empresa,
 
-	pago.Fecha, 
+	pago.Fecha,
 
 	pago.Estado,
 
@@ -1189,10 +1195,10 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_COMPRADOR`()
 SELECT
-	empresa.comprador.Id_Comprador, 
-	empresa.comprador.Nombre, 
-	empresa.comprador.Documento, 
-	empresa.comprador.Apellido, 
+	empresa.comprador.Id_Comprador,
+	empresa.comprador.Nombre,
+	empresa.comprador.Documento,
+	empresa.comprador.Apellido,
 	empresa.comprador.RUC
 FROM
 	empresa.comprador ;;
@@ -1214,17 +1220,17 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_FECHA_PAGO`(IN IDP INT)
 SELECT
 
-	fechapago.Id_Fecha_Pago, 
+	fechapago.Id_Fecha_Pago,
 
-	fechapago.Id_Pago, 
+	fechapago.Id_Pago,
 
-	fechapago.Fecha_Modificacion, 
+	fechapago.Fecha_Modificacion,
 
 	TRUNCATE(fechapago.Pago,2) as Pago
 
 FROM
 
-	fechapago 
+	fechapago
 
 WHERE
 
@@ -1266,21 +1272,21 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_GRUPO`()
-SELECT DISTINCT 
+SELECT DISTINCT
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Id_Grupo,
 
 	pago.Fecha,
 
-	registrodeganado.Id_Proveedor, 
+	registrodeganado.Id_Proveedor,
 
-	registrodeganado.Id_Transportista, 
+	registrodeganado.Id_Transportista,
 
-	registrodeganado.Id_Pago, 
+	registrodeganado.Id_Pago,
 
 	concat_ws(' ',proveedor.Nombre, proveedor.Apellido) AS Nombre,
 
-	proveedor.Documento, 
+	proveedor.Documento,
 
 	transportista.Licencia,
 
@@ -1292,7 +1298,7 @@ SELECT DISTINCT
 
 	TRUNCATE(sum(registrodeganado.Precio),2) AS Precio
 
-	
+
 
 FROM
 
@@ -1302,7 +1308,7 @@ FROM
 
 	pago
 
-	ON 
+	ON
 
 		registrodeganado.Id_Pago = pago.Id_Pago
 
@@ -1310,7 +1316,7 @@ FROM
 
 	transportista
 
-	ON 
+	ON
 
 		registrodeganado.Id_Transportista = transportista.Id_Transportista
 
@@ -1318,11 +1324,11 @@ FROM
 
 	proveedor
 
-	ON 
+	ON
 
 		registrodeganado.Id_Proveedor = proveedor.Id_Proveedor
 
-		
+
 
 	GROUP BY Id_Grupo ;;
 DELIMITER ;
@@ -1336,70 +1342,46 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_GRUPO_COMPRA`()
-SELECT DISTINCT 
-
-	registrodeganado.Id_Grupo, 
-
-	pago.Fecha,
-
-	registrodeganado.Id_Proveedor, 
-
-	registrodeganado.Id_Transportista, 
-
-	registrodeganado.Id_Pago, 
-
-	concat_ws(' ',proveedor.Nombre, proveedor.Apellido) AS Nombre,
-
-	proveedor.Documento, 
-
-	transportista.Licencia,
-
-	pago.Ubicacion AS Ubicacion,
-
-	TRUNCATE((sum(registrodeganado.Peso)),2) AS Peso,
-
-	Pago.Precio_Unidad AS Precio_Unidad,
-
-	TRUNCATE(pago.Pago_Total,2) AS Precio,
-
-	pago.Restante
-
-FROM
-
-	registrodeganado
-
-	INNER JOIN
-
-	pago
-
-	ON 
-
-		registrodeganado.Id_Pago = pago.Id_Pago
-
-	INNER JOIN
-
-	transportista
-
-	ON 
-
-		registrodeganado.Id_Transportista = transportista.Id_Transportista
-
-	INNER JOIN
-
-	proveedor
-
-	ON 
-
-		registrodeganado.Id_Proveedor = proveedor.Id_Proveedor
-
-		
-
-	GROUP BY Id_Grupo ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `LISTAR_GRUPO_COMPRA`()
+BEGIN
+    SELECT DISTINCT
+        registrodeganado.Id_Grupo,
+        pago.Fecha,
+        registrodeganado.Id_Proveedor,
+        registrodeganado.Id_Transportista,
+        registrodeganado.Id_Pago,
+        CONCAT_WS(' ', proveedor.Nombre, proveedor.Apellido) AS Nombre,
+        proveedor.Documento,
+        transportista.Licencia,
+        pago.Ubicacion AS Ubicacion,
+        TRUNCATE(SUM(registrodeganado.Peso), 2) AS Peso,
+        pago.Precio_Unidad,
+        TRUNCATE(pago.Pago_Total, 2) AS Precio,
+        pago.Restante
+    FROM
+        registrodeganado
+        INNER JOIN pago ON registrodeganado.Id_Pago = pago.Id_Pago
+        INNER JOIN transportista ON registrodeganado.Id_Transportista = transportista.Id_Transportista
+        INNER JOIN proveedor ON registrodeganado.Id_Proveedor = proveedor.Id_Proveedor
+    GROUP BY
+        registrodeganado.Id_Grupo,
+        pago.Fecha,
+        registrodeganado.Id_Proveedor,
+        registrodeganado.Id_Transportista,
+        registrodeganado.Id_Pago,
+        proveedor.Nombre,
+        proveedor.Apellido,
+        proveedor.Documento,
+        transportista.Licencia,
+        pago.Ubicacion,
+        pago.Precio_Unidad,
+        pago.Pago_Total,
+        pago.Restante;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1411,80 +1393,41 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_GRUPO_GANANCIAS`()
-SELECT
-
-	registroventaganado.Grupo_Venta, 
-
-	pago.Fecha, 
-
-	concat_ws(' ',comprador.Nombre, comprador.Apellido) AS Nombre,
-
-	comprador.Documento, 
-
-	transportista.Licencia,
-
-	count(Grupo_Venta) AS cantidad,
-
-	TRUNCATE(sum(registrodeganado.Precio),2) AS precio_compra,
-
-	TRUNCATE(sum(registrodeganado.Biatico_Ganado),2) AS gasto_inicial,
-
-	TRUNCATE(sum(registrodeganado.Precio),2) + 	TRUNCATE(sum(registrodeganado.Biatico_Ganado),2) AS precio_compra_total , 
-
-	TRUNCATE(Pago.Pago_Total,2) AS precio_venta,
-
-	TRUNCATE(sum(registroventaganado.Biatico_Ganado),2) AS gasto_final,
-
-	TRUNCATE(Pago.Pago_Total,2) + TRUNCATE(sum(registroventaganado.Biatico_Ganado),2) AS precio_venta_total,
-
-	TRUNCATE((Pago.Pago_Total + sum(registroventaganado.Biatico_Ganado)) - (sum(registrodeganado.Precio) + 	sum(registrodeganado.Biatico_Ganado)),2) AS ganancia
-
-	
-
-FROM
-
-	registroventaganado 
-
-	INNER JOIN
-
-	pago
-
-	ON 
-
-		registroventaganado.Id_Pago_Venta = pago.Id_Pago
-
-	INNER JOIN
-
-	comprador
-
-	ON 
-
-		registroventaganado.Id_Comprador = comprador.Id_Comprador
-
-	INNER JOIN
-
-	transportista
-
-	ON 
-
-		registroventaganado.Id_Transportista = transportista.Id_Transportista
-
-	INNER JOIN
-
-	registrodeganado
-
-	ON 
-
-		registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
-
-		
-
-	GROUP BY Grupo_Venta ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `LISTAR_GRUPO_GANANCIAS`()
+BEGIN
+    SELECT
+        registroventaganado.Grupo_Venta,
+        pago.Fecha,
+        CONCAT_WS(' ', comprador.Nombre, comprador.Apellido) AS Nombre,
+        comprador.Documento,
+        transportista.Licencia,
+        COUNT(registroventaganado.Grupo_Venta) AS cantidad,
+        TRUNCATE(SUM(registrodeganado.Precio), 2) AS precio_compra,
+        TRUNCATE(SUM(registrodeganado.Biatico_Ganado), 2) AS gasto_inicial,
+        TRUNCATE(SUM(registrodeganado.Precio), 2) + TRUNCATE(SUM(registrodeganado.Biatico_Ganado), 2) AS precio_compra_total,
+        TRUNCATE(pago.Pago_Total, 2) AS precio_venta,
+        TRUNCATE(SUM(registroventaganado.Biatico_Ganado), 2) AS gasto_final,
+        TRUNCATE(pago.Pago_Total, 2) + TRUNCATE(SUM(registroventaganado.Biatico_Ganado), 2) AS precio_venta_total,
+        TRUNCATE((pago.Pago_Total + SUM(registroventaganado.Biatico_Ganado)) - (SUM(registrodeganado.Precio) + SUM(registrodeganado.Biatico_Ganado)), 2) AS ganancia
+    FROM
+        registroventaganado
+        INNER JOIN pago ON registroventaganado.Id_Pago_Venta = pago.Id_Pago
+        INNER JOIN comprador ON registroventaganado.Id_Comprador = comprador.Id_Comprador
+        INNER JOIN transportista ON registroventaganado.Id_Transportista = transportista.Id_Transportista
+        INNER JOIN registrodeganado ON registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
+    GROUP BY
+        registroventaganado.Grupo_Venta,
+        pago.Fecha,
+        comprador.Nombre,
+        comprador.Apellido,
+        comprador.Documento,
+        transportista.Licencia,
+        pago.Pago_Total;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1496,163 +1439,74 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_GRUPO_GANANCIAS_PRUEBA`(in DNIBS INT)
+CREATE DEFINER=`root`@`%` PROCEDURE `LISTAR_GRUPO_GANANCIAS_PRUEBA`(IN DNIBS INT)
 BEGIN
-
-
-
-SET @C:=DNIBS;
-
-IF LENGTH(@C) <= 1 THEN
-
-		SELECT
-
-			registroventaganado.Grupo_Venta, 
-
-			pago.Fecha, 
-
-			concat_ws(' ',comprador.Nombre, comprador.Apellido) AS Nombre,
-
-			comprador.Documento, 
-
-			transportista.Licencia,
-
-			count(Grupo_Venta) AS cantidad,
-
-			TRUNCATE(sum(registrodeganado.Precio),2) AS precio_compra,
-
-			TRUNCATE(sum(registrodeganado.Biatico_Ganado),2) AS gasto_inicial,
-
-			TRUNCATE(sum(registrodeganado.Precio) + 	sum(registrodeganado.Biatico_Ganado),2) AS precio_compra_total , 
-
-			TRUNCATE(Pago.Pago_Total,2) AS precio_venta,
-
-			TRUNCATE(sum(registroventaganado.Biatico_Ganado),2) AS gasto_final,
-
-			TRUNCATE(Pago.Pago_Total + sum(registroventaganado.Biatico_Ganado),2) AS precio_venta_total,
-
-			TRUNCATE((Pago.Pago_Total + sum(registroventaganado.Biatico_Ganado)) - (sum(registrodeganado.Precio) + 	sum(registrodeganado.Biatico_Ganado)),2) AS ganancia
-
-			
-
-		FROM
-
-			registroventaganado 
-
-			INNER JOIN
-
-			pago
-
-			ON 
-
-				registroventaganado.Id_Pago_Venta = pago.Id_Pago
-
-			INNER JOIN
-
-			comprador
-
-			ON 
-
-				registroventaganado.Id_Comprador = comprador.Id_Comprador
-
-			INNER JOIN
-
-			transportista
-
-			ON 
-
-				registroventaganado.Id_Transportista = transportista.Id_Transportista
-
-			INNER JOIN
-
-			registrodeganado
-
-			ON 
-
-				registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
-
-				
-
-			GROUP BY Grupo_Venta;
-
-ELSE
-
-	SELECT
-
-	registroventaganado.Grupo_Venta, 
-
-	pago.Fecha, 
-
-	concat_ws(' ',comprador.Nombre, comprador.Apellido) AS Nombre,
-
-	comprador.Documento, 
-
-	transportista.Licencia,
-
-	count(Grupo_Venta) AS cantidad,
-
-	TRUNCATE(sum(registrodeganado.Precio),2) AS precio_compra,
-
-			TRUNCATE(sum(registrodeganado.Biatico_Ganado),2) AS gasto_inicial,
-
-			TRUNCATE(sum(registrodeganado.Precio) + 	sum(registrodeganado.Biatico_Ganado),2) AS precio_compra_total , 
-
-			TRUNCATE(Pago.Pago_Total,2) AS precio_venta,
-
-			TRUNCATE(sum(registroventaganado.Biatico_Ganado),2) AS gasto_final,
-
-			TRUNCATE(Pago.Pago_Total + sum(registroventaganado.Biatico_Ganado),2) AS precio_venta_total,
-
-			TRUNCATE((Pago.Pago_Total + sum(registroventaganado.Biatico_Ganado)) - (sum(registrodeganado.Precio) + 	sum(registrodeganado.Biatico_Ganado)),2) AS ganancia
-
-FROM
-
-	registroventaganado 
-
-	INNER JOIN
-
-	pago
-
-	ON 
-
-		registroventaganado.Id_Pago_Venta = pago.Id_Pago
-
-	INNER JOIN
-
-	comprador
-
-	ON 
-
-		registroventaganado.Id_Comprador = comprador.Id_Comprador
-
-	INNER JOIN
-
-	transportista
-
-	ON 
-
-		registroventaganado.Id_Transportista = transportista.Id_Transportista
-
-	INNER JOIN
-
-	registrodeganado
-
-	ON 
-
-		registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
-
-		
-
-	 WHERE comprador.Documento = @C GROUP BY Grupo_Venta;
-
-END IF;
-
-	
-
+    SET @C := DNIBS;
+
+    IF LENGTH(@C) <= 1 THEN
+        SELECT
+            registroventaganado.Grupo_Venta,
+            pago.Fecha,
+            CONCAT_WS(' ', comprador.Nombre, comprador.Apellido) AS Nombre,
+            comprador.Documento,
+            transportista.Licencia,
+            COUNT(registroventaganado.Grupo_Venta) AS cantidad,
+            TRUNCATE(SUM(registrodeganado.Precio), 2) AS precio_compra,
+            TRUNCATE(SUM(registrodeganado.Biatico_Ganado), 2) AS gasto_inicial,
+            TRUNCATE(SUM(registrodeganado.Precio) + SUM(registrodeganado.Biatico_Ganado), 2) AS precio_compra_total,
+            TRUNCATE(pago.Pago_Total, 2) AS precio_venta,
+            TRUNCATE(SUM(registroventaganado.Biatico_Ganado), 2) AS gasto_final,
+            TRUNCATE(pago.Pago_Total + SUM(registroventaganado.Biatico_Ganado), 2) AS precio_venta_total,
+            TRUNCATE((pago.Pago_Total + SUM(registroventaganado.Biatico_Ganado)) - (SUM(registrodeganado.Precio) + SUM(registrodeganado.Biatico_Ganado)), 2) AS ganancia
+        FROM
+            registroventaganado
+            INNER JOIN pago ON registroventaganado.Id_Pago_Venta = pago.Id_Pago
+            INNER JOIN comprador ON registroventaganado.Id_Comprador = comprador.Id_Comprador
+            INNER JOIN transportista ON registroventaganado.Id_Transportista = transportista.Id_Transportista
+            INNER JOIN registrodeganado ON registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
+        GROUP BY
+            registroventaganado.Grupo_Venta,
+            pago.Fecha,
+            comprador.Nombre,
+            comprador.Apellido,
+            comprador.Documento,
+            transportista.Licencia,
+            pago.Pago_Total;
+    ELSE
+        SELECT
+            registroventaganado.Grupo_Venta,
+            pago.Fecha,
+            CONCAT_WS(' ', comprador.Nombre, comprador.Apellido) AS Nombre,
+            comprador.Documento,
+            transportista.Licencia,
+            COUNT(registroventaganado.Grupo_Venta) AS cantidad,
+            TRUNCATE(SUM(registrodeganado.Precio), 2) AS precio_compra,
+            TRUNCATE(SUM(registrodeganado.Biatico_Ganado), 2) AS gasto_inicial,
+            TRUNCATE(SUM(registrodeganado.Precio) + SUM(registrodeganado.Biatico_Ganado), 2) AS precio_compra_total,
+            TRUNCATE(pago.Pago_Total, 2) AS precio_venta,
+            TRUNCATE(SUM(registroventaganado.Biatico_Ganado), 2) AS gasto_final,
+            TRUNCATE(pago.Pago_Total + SUM(registroventaganado.Biatico_Ganado), 2) AS precio_venta_total,
+            TRUNCATE((pago.Pago_Total + SUM(registroventaganado.Biatico_Ganado)) - (SUM(registrodeganado.Precio) + SUM(registrodeganado.Biatico_Ganado)), 2) AS ganancia
+        FROM
+            registroventaganado
+            INNER JOIN pago ON registroventaganado.Id_Pago_Venta = pago.Id_Pago
+            INNER JOIN comprador ON registroventaganado.Id_Comprador = comprador.Id_Comprador
+            INNER JOIN transportista ON registroventaganado.Id_Transportista = transportista.Id_Transportista
+            INNER JOIN registrodeganado ON registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
+        WHERE comprador.Documento = @C
+        GROUP BY
+            registroventaganado.Grupo_Venta,
+            pago.Fecha,
+            comprador.Nombre,
+            comprador.Apellido,
+            comprador.Documento,
+            transportista.Licencia,
+            pago.Pago_Total;
+    END IF;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1670,21 +1524,21 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_GRUPO_NUEVO`()
-SELECT DISTINCT 
+SELECT DISTINCT
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Id_Grupo,
 
 	pago.Fecha,
 
-	registrodeganado.Id_Proveedor, 
+	registrodeganado.Id_Proveedor,
 
-	registrodeganado.Id_Transportista, 
+	registrodeganado.Id_Transportista,
 
-	registrodeganado.Id_Pago, 
+	registrodeganado.Id_Pago,
 
 	concat_ws(' ',proveedor.Nombre, proveedor.Apellido) AS Nombre,
 
-	proveedor.Documento, 
+	proveedor.Documento,
 
 	transportista.Licencia,
 
@@ -1704,7 +1558,7 @@ FROM
 
 	pago
 
-	ON 
+	ON
 
 		registrodeganado.Id_Pago = pago.Id_Pago
 
@@ -1712,7 +1566,7 @@ FROM
 
 	transportista
 
-	ON 
+	ON
 
 		registrodeganado.Id_Transportista = transportista.Id_Transportista
 
@@ -1720,11 +1574,11 @@ FROM
 
 	proveedor
 
-	ON 
+	ON
 
 		registrodeganado.Id_Proveedor = proveedor.Id_Proveedor
 
-		
+
 
 	GROUP BY Id_Grupo ;;
 DELIMITER ;
@@ -1783,29 +1637,29 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_VENTA_GANADO`(IN `idg` INT)
 SELECT
 
-	registroventaganado.Id_Ganado_Registro, 
+	registroventaganado.Id_Ganado_Registro,
 
-	registrodeganado.Raza, 
+	registrodeganado.Raza,
 
-	registrodeganado.Peso, 
+	registrodeganado.Peso,
 
-	registrodeganado.Precio, 
+	registrodeganado.Precio,
 
-	registrodeganado.Sexo, 
+	registrodeganado.Sexo,
 
-	registrodeganado.Color, 
+	registrodeganado.Color,
 
-	registrodeganado.Salud, 
+	registrodeganado.Salud,
 
-	registrodeganado.Aretes, 
+	registrodeganado.Aretes,
 
-	registrodeganado.Marca, 
+	registrodeganado.Marca,
 
-	registrodeganado.Descripcion, 
+	registrodeganado.Descripcion,
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Id_Grupo,
 
-	registroventaganado.Grupo_Venta, 
+	registroventaganado.Grupo_Venta,
 
 	CONCAT(registrodeganado.Edad," ",registrodeganado.Tipo) as Edad,
 
@@ -1823,25 +1677,25 @@ SELECT
 
 	registroventaganado
 
-	
+
 
 	INNER JOIN
 
 	registrodeganado
 
-	ON 
+	ON
 
-		registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado 
+		registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
 
 		INNER JOIN
 
 	proveedor
 
-	ON 
+	ON
 
 		registrodeganado.Id_Proveedor = proveedor.Id_Proveedor
 
-		
+
 
 		WHERE Grupo_Venta = idg ;;
 DELIMITER ;
@@ -1862,29 +1716,29 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_VENTA_GANADO_VENDIDOS`(IN idg INT)
 SELECT
 
-	registroventaganado.Id_Ganado_Registro, 
+	registroventaganado.Id_Ganado_Registro,
 
-	registrodeganado.Raza, 
+	registrodeganado.Raza,
 
-	registrodeganado.Peso, 
+	registrodeganado.Peso,
 
-	registrodeganado.Precio, 
+	registrodeganado.Precio,
 
-	registrodeganado.Sexo, 
+	registrodeganado.Sexo,
 
-	registrodeganado.Color, 
+	registrodeganado.Color,
 
-	registrodeganado.Salud, 
+	registrodeganado.Salud,
 
-	registrodeganado.Aretes, 
+	registrodeganado.Aretes,
 
-	registrodeganado.Marca, 
+	registrodeganado.Marca,
 
-	registrodeganado.Descripcion, 
+	registrodeganado.Descripcion,
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Id_Grupo,
 
-	registroventaganado.Grupo_Venta, 
+	registroventaganado.Grupo_Venta,
 
 	registrodeganado.Edad
 
@@ -1896,7 +1750,7 @@ FROM
 
 	registrodeganado
 
-	ON 
+	ON
 
 		registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado WHERE Grupo_Venta = idg ;;
 DELIMITER ;
@@ -1917,27 +1771,27 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_PAGO_FILTRADO_COMPRA`(IN GRUP INT)
 SELECT
 
-	pago.Id_Pago, 
+	pago.Id_Pago,
 
-	pago.Id_Grupo_Compra, 
+	pago.Id_Grupo_Compra,
 
-	pago.Id_Grupo_Venta, 
+	pago.Id_Grupo_Venta,
 
-	pago.Pago_Total, 
+	pago.Pago_Total,
 
-	pago.Pago_Parcial, 
+	pago.Pago_Parcial,
 
-	pago.Restante, 
+	pago.Restante,
 
-	pago.Biatico_Inicio, 
+	pago.Biatico_Inicio,
 
-	pago.Biatico_Extras, 
+	pago.Biatico_Extras,
 
-	pago.Biatico_Final, 
+	pago.Biatico_Final,
 
-	pago.Biatico_Personal, 
+	pago.Biatico_Personal,
 
-	pago.Biatico_Empresa, 
+	pago.Biatico_Empresa,
 
 	pago.Fecha
 
@@ -1992,7 +1846,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MODIFICAR_GANADO`(IN IDGANADOMOD INT, IN RAZA_GANADO VARCHAR(20),
 
- IN PESO_GANDO FLOAT, IN COLOR_GANADO VARCHAR(20), IN SEXO_GANADO VARCHAR(1), 
+ IN PESO_GANDO FLOAT, IN COLOR_GANADO VARCHAR(20), IN SEXO_GANADO VARCHAR(1),
 
  IN SALUD_GANADO VARCHAR(4), IN MARCA_GANADO VARCHAR(10), IN ARETES_GANADO VARCHAR(10),
 
@@ -2241,7 +2095,7 @@ BEGIN
 
  SET @A:= (SELECT max(Id_Grupo) from registrodeganado);
 
- 
+
 
 IF LENGTH(@A) >= 1 THEN
 
@@ -2274,7 +2128,7 @@ BEGIN
 
  SET @A:= (SELECT max(Grupo_Venta) from registroventaganado);
 
- 
+
 
 IF LENGTH(@A) >= 1 THEN
 
@@ -2548,33 +2402,33 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GANADO`(IN grupogranadot INT)
 SELECT DISTINCT
 
-	registrodeganado.Id_Registro_Ganado, 
+	registrodeganado.Id_Registro_Ganado,
 
-	registrodeganado.Precio, 
+	registrodeganado.Precio,
 
 	registrodeganado.Peso,
 
-	registrodeganado.Raza, 
+	registrodeganado.Raza,
 
-	 
 
-	registrodeganado.Color, 
 
-	registrodeganado.Sexo, 
+	registrodeganado.Color,
 
-	registrodeganado.Salud, 
+	registrodeganado.Sexo,
 
-	registrodeganado.Marca, 
+	registrodeganado.Salud,
 
-	registrodeganado.Aretes, 
+	registrodeganado.Marca,
 
-	registrodeganado.Descripcion, 
+	registrodeganado.Aretes,
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Descripcion,
 
-	registrodeganado.Edad, 
+	registrodeganado.Id_Grupo,
 
-	
+	registrodeganado.Edad,
+
+
 
 	registrodeganado.Estado
 
@@ -2603,29 +2457,29 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GANADO_INPUT`(IN idganadot INT)
 SELECT
 
-	registrodeganado.Id_Registro_Ganado, 
+	registrodeganado.Id_Registro_Ganado,
 
-	registrodeganado.Precio, 
+	registrodeganado.Precio,
 
 	registrodeganado.Peso,
 
-	registrodeganado.Raza, 
+	registrodeganado.Raza,
 
-	registrodeganado.Color, 
+	registrodeganado.Color,
 
-	registrodeganado.Sexo, 
+	registrodeganado.Sexo,
 
-	registrodeganado.Salud, 
+	registrodeganado.Salud,
 
-	registrodeganado.Marca, 
+	registrodeganado.Marca,
 
-	registrodeganado.Aretes, 
+	registrodeganado.Aretes,
 
-	registrodeganado.Descripcion, 
+	registrodeganado.Descripcion,
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Id_Grupo,
 
-	registrodeganado.Edad, 
+	registrodeganado.Edad,
 
 	registrodeganado.Estado
 
@@ -2654,29 +2508,29 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GANADO_INPUT_LISTA_VENTA`(IN idganadot INT)
 SELECT
 
-	registrodeganado.Id_Registro_Ganado, 
+	registrodeganado.Id_Registro_Ganado,
 
-	registrodeganado.Precio, 
+	registrodeganado.Precio,
 
 	registrodeganado.Peso,
 
-	registrodeganado.Raza, 
+	registrodeganado.Raza,
 
-	registrodeganado.Color, 
+	registrodeganado.Color,
 
-	registrodeganado.Sexo, 
+	registrodeganado.Sexo,
 
-	registrodeganado.Salud, 
+	registrodeganado.Salud,
 
-	registrodeganado.Marca, 
+	registrodeganado.Marca,
 
-	registrodeganado.Aretes, 
+	registrodeganado.Aretes,
 
-	registrodeganado.Descripcion, 
+	registrodeganado.Descripcion,
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Id_Grupo,
 
-	registrodeganado.Edad, 
+	registrodeganado.Edad,
 
 	registrodeganado.Estado
 
@@ -2707,27 +2561,27 @@ SELECT
 
 	registrodeganado.Id_Registro_Ganado,
 
-	registrodeganado.Raza, 
+	registrodeganado.Raza,
 
-	registrodeganado.Peso, 
+	registrodeganado.Peso,
 
-	registrodeganado.Color, 
+	registrodeganado.Color,
 
-	registrodeganado.Sexo, 
+	registrodeganado.Sexo,
 
-	registrodeganado.Salud, 
+	registrodeganado.Salud,
 
-	registrodeganado.Marca, 
+	registrodeganado.Marca,
 
-	registrodeganado.Aretes, 
+	registrodeganado.Aretes,
 
-	registrodeganado.Descripcion, 
+	registrodeganado.Descripcion,
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Id_Grupo,
 
-	registrodeganado.Edad, 
+	registrodeganado.Edad,
 
-	registrodeganado.Precio, 
+	registrodeganado.Precio,
 
 	registroventaganado.Grupo_Venta
 
@@ -2739,11 +2593,11 @@ FROM
 
 	registrodeganado
 
-	ON 
+	ON
 
 		registroventaganado.Id_Ganado_Registro = registrodeganado.Id_Registro_Ganado
 
-		
+
 
 	WHERE registroventaganado.Grupo_Venta = GDV AND registroventaganado.Precio_Final = 0 ;;
 DELIMITER ;
@@ -2764,7 +2618,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GRUPO_COMPRA`()
 SELECT DISTINCT
 
-	registrodeganado.Id_Grupo, 
+	registrodeganado.Id_Grupo,
 
 	registrodeganado.Estado,
 
@@ -2772,7 +2626,7 @@ SELECT DISTINCT
 
 FROM
 
-	registrodeganado 
+	registrodeganado
 
 WHERE
 
@@ -2797,9 +2651,9 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GRUPO_COMPRA_TOTAL`()
 SELECT DISTINCT
 
-	registroventaganado.Grupo_Venta, 
+	registroventaganado.Grupo_Venta,
 
-	registroventaganado.Id_Pago_Venta, 
+	registroventaganado.Id_Pago_Venta,
 
 	pago.Pago_Total
 
@@ -2811,7 +2665,7 @@ FROM
 
 	pago
 
-	ON 
+	ON
 
 		registroventaganado.Id_Pago_Venta = pago.Id_Pago
 
@@ -2836,21 +2690,21 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `VERIFICAR_USUARIO`(IN USUARIOT VARCHAR(30))
 SELECT
 
-	usuario.Id_Usuario, 
+	usuario.Id_Usuario,
 
-	usuario.Nombre, 
+	usuario.Nombre,
 
-	usuario.Apellido, 
+	usuario.Apellido,
 
-	usuario.Documento, 
+	usuario.Documento,
 
-	usuario.Usuario, 
+	usuario.Usuario,
 
 	usuario.Pass
 
 FROM
 
-	usuario		
+	usuario
 
 	WHERE Usuario = BINARY USUARIOT ;;
 DELIMITER ;
@@ -2958,4 +2812,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-20  0:26:57
+-- Dump completed on 2025-05-22 17:26:13

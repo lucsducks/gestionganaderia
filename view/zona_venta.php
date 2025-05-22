@@ -70,7 +70,7 @@
                     <input class="form-field" type="text" placeholder="Introduzca el lugar de la venta" id="ubicacion_venta">
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistrogrupoventa()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="registrargrupoVenta()">Registrar grupo</button>
@@ -140,7 +140,7 @@
                     <input class="form-field" type="text" placeholder="Introduzca la descripcion del ganado vacuno" id="Descripcion_zonaventa" disabled>
                 </div>
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalregistroganadoventa()" role="button">Cancelar</button>
                     <button class="button-34" role="button" onclick="registroGanadoVenta()">Guardar</button>

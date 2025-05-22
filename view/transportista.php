@@ -46,7 +46,7 @@
                   <span>RUC</span>
               </div>
               <br>
-              <!-- HTML !-->
+
               <div class="btninput">
                   <button class="button-34 cancelar" onclick="cerrarmodalregistro()" role="button">Cancelar</button>
                   <button class="button-34" role="button" onclick="registar_transportista()">Guardar</button>
@@ -55,7 +55,7 @@
 
           </div>
       </div>
-      
+
       <div id="modal_container_editar" class="modal-container">
           <div class="modal">
               <div class="form-group">
@@ -83,7 +83,7 @@
                   <span>RUC</span>
               </div>
               <br>
-              <!-- HTML !-->
+
               <div class="btninput">
                   <button class="button-34 cancelar" onclick="cerrarmodaleditar()" role="button">Cancelar</button>
                   <button class="button-34" role="button" onclick="editarTransportista()">Modificar</button>
@@ -119,7 +119,7 @@
                   <span>RUC</span>
               </div>
               <br>
-              <!-- HTML !-->
+
               <div class="btninput">
                   <button class="button-34 cancelar" onclick="cerrarmodaleliminar()" role="button">Cancelar</button>
                   <button class="button-34" role="button" onclick="eliminartransportista()">Eliminar</button>

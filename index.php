@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!isset($_SESSION['S_IDUSUARIO'])) {
-    header('location: login.php'); // con esto condicionamos par que no se
+    header('location: login.php');
     }
     ?>
 
@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-    <!-- style datatables-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 
     <link rel="stylesheet" type="text/css" href="utilities/DataTables/datatables.min.css" />
@@ -30,17 +29,9 @@
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
-                        <span class="title">Bienvenidos Sr. Nicolas L.</span>
+                        <span class="title">Bienvenido a la platoforma</span>
                     </a>
                 </li>
-                <!--<li>
-                    <a id="principal" href="#">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>-->
                 <li>
                     <a id="proveedor" href="#">
                         <span class="icon">
@@ -129,20 +120,8 @@
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
-                <!-- search 
-					<div class="search">
-						<label>
-							<input type="text" placeholder="Search here">
-							<ion-icon name="search-outline"></ion-icon>
-						</label>
-					</div>-->
-                <!-- userImg 
-                <div class="user">
-                    <img src="user.jpg">
-                </div>-->
             </div>
             <div id="principalcontenido">
-                <!-- cards -->
 
 
             </div>
@@ -161,7 +140,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="index.js"></script>
-    
+
     <script>
     let toggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');
@@ -183,7 +162,6 @@
         navigation.classList.toggle('active');
         main.classList.toggle('active');
     }
-    // add hovered class in selected list item
     let list = document.querySelectorAll('.navigation li');
 
     function activeLink() {

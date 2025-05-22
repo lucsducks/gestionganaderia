@@ -94,7 +94,7 @@
                 </div>
 
                 <br>
-                <!-- HTML !-->
+
                 <div class="btninput">
                     <button class="button-34 cancelar" onclick="cerrarmodalpagototal()" role="button">okay</button>
 

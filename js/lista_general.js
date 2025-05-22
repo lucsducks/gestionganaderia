@@ -1,7 +1,9 @@
 var abrioganado = false;
 var abriopago = true;
 
-var modal_container_ganado_modificar = document.getElementById("modal_ganado_modificar");
+var modal_container_ganado_modificar = document.getElementById(
+  "modal_ganado_modificar"
+);
 function cerrarmodalmodificarganado() {
   modal_container_ganado_modificar.classList.remove("show");
 }
@@ -32,7 +34,6 @@ function cerrarmodalregistropago() {
 var tbl_grupo_simple;
 function lista_Ganado_serverside() {
   tbl_grupo_simple = $("#tabla_grupo").DataTable({
-    
     ajax: {
       url: "controller/listageneral/listar_grupo.php",
       type: "POST",
@@ -45,15 +46,16 @@ function lista_Ganado_serverside() {
       { data: "Licencia" },
       { data: "Id_Pago" },
       { data: "Ubicacion" },
-      { data: "Peso" },  
-      {data: "Precio_Unidad" },
+      { data: "Peso" },
+      { data: "Precio_Unidad" },
       { data: "Precio" },
-      {  data: "Restante",
+      {
+        data: "Restante",
         render: function (data, type, row) {
           if (parseFloat(data) == 0) {
-            return '<span class="success">'+ data + '</span>';
-          }else {
-            return '<span class="danger">'+ data + '</span>';
+            return '<span class="success">' + data + "</span>";
+          } else {
+            return '<span class="danger">' + data + "</span>";
           }
         },
       },
@@ -69,7 +71,7 @@ function lista_Ganado_serverside() {
     processing: true,
     language: idioma_espanol,
     select: true,
-    scrollX:true,
+    scrollX: true,
   });
 }
 
@@ -117,18 +119,15 @@ function cargartransportista() {
   });
 }
 
-
-
 function abrirmodalganadogrupo1() {
   $("#tabla_grupo").on("click", ".seleccionar", function () {
     var data = tbl_grupo_simple.row($(this).parents("tr")).data();
-
 
     localStorage.setItem("grupoid", data["Id_Grupo"]);
     localStorage.setItem("proveedorlista", data["Id_Proveedor"]);
     localStorage.setItem("transportistalista", data["Id_Transportista"]);
     localStorage.setItem("idpago", data["Id_Pago"]);
-    localStorage.setItem("pulistagrale",data["Precio_Unidad"]);
+    localStorage.setItem("pulistagrale", data["Precio_Unidad"]);
     lista_ganado_simple();
   });
   modal_container_ganado.classList.add("show");
@@ -139,7 +138,6 @@ function lista_ganado_simple() {
   let idGrupo = localStorage.getItem("grupoid");
 
   tbl_ganado_simple1 = $("#tablita").DataTable({
-    
     ajax: {
       url: "controller/ganado/ganadolistar.php",
       type: "POST",
@@ -175,7 +173,6 @@ function lista_ganado_simple() {
         defaultContent:
           "<button class='button-34 seleccionar' role='button'onclick='editarmodalganado()' ><span class='material-icons-sharp' > edit </span></button>",
       },
-      
     ],
     searching: { regex: false },
     lengthMenu: [
@@ -189,7 +186,7 @@ function lista_ganado_simple() {
     processing: true,
     language: idioma_espanol,
     select: true,
-    scrollX:true,
+    scrollX: true,
   });
   tbl_ganado_simple1.on("draw.td", function () {
     let pageInfo = $("#tablita").DataTable().page.info();
@@ -203,13 +200,16 @@ function lista_ganado_simple() {
 }
 
 // registro ganado
-var modal_container_ganado1 = document.getElementById("modal_ganado_lista_general");
+var modal_container_ganado1 = document.getElementById(
+  "modal_ganado_lista_general"
+);
 
 function cerrarmodalregistroganadolistageneral() {
   modal_container_ganado1.classList.remove("show");
 }
 function abrirmodalderegistroganadolistageneral() {
-  document.getElementById("preciounidad").value = localStorage.getItem("pulistagrale");
+  document.getElementById("preciounidad").value =
+    localStorage.getItem("pulistagrale");
   modal_container_ganado1.classList.add("show");
 }
 function datosdelselectlistageneral() {
@@ -218,14 +218,15 @@ function datosdelselectlistageneral() {
   llenardata += "<option value='H'>Hembra</option>";
   llenardata += "<option value='M'>Macho</option>";
   document.getElementById("select_sexo_listageneral").innerHTML = llenardata;
-  document.getElementById("select_sexo_editar_listageneral").innerHTML = llenardata;
+  document.getElementById("select_sexo_editar_listageneral").innerHTML =
+    llenardata;
   llenardata2 += "<option value='bien'>Bien</option>";
   llenardata2 += "<option value='mal'>Mal</option>";
   document.getElementById("select_salud_listageneral").innerHTML = llenardata2;
-  document.getElementById("select_salud_editar_listageneral").innerHTML = llenardata2;
+  document.getElementById("select_salud_editar_listageneral").innerHTML =
+    llenardata2;
 }
 function registroGanadolistageneral() {
-
   let raza = document.getElementById("Raza").value;
   let Preciounidad = document.getElementById("preciounidad").value;
   let Peso = document.getElementById("Peso").value;
@@ -284,7 +285,6 @@ function registroGanadolistageneral() {
       abrioganado = true;
       localStorage.setItem("precioganado", resp);
       if (resp > 0) {
-
         Swal.fire(
           "Mensaje de confirmacion",
           "Agregado con exito",
@@ -314,7 +314,6 @@ function limpiarinputsganado() {
   document.getElementById("Descripcion").value = "";
   document.getElementById("Edad").value = "";
 }
-
 
 function limpiarinputpago() {
   document.getElementById("pagoparcial").value = "";
@@ -354,37 +353,36 @@ function registrarpagolistageneral() {
           data: formData,
           contentType: false,
           processData: false,
-          success: function (resp) {
-            
-          },
+          success: function (resp) {},
         });
         abrioganado = false;
         Swal.fire("Guardado con exito!", "", "success");
-      } 
+      }
     });
   }
 }
-function editarmodalganado(){
-  $('#tablita').on('click', '.seleccionar', function () {
-    var data1 = tbl_ganado_simple1.row($(this).parents('tr')).data(); //tamano escritorio
-    
-        document.getElementById("id_editar_ganado").value = data1["Id_Registro_Ganado"];
-        document.getElementById("Raza_editar").value = data1["Raza"];
-        document.getElementById("Peso_editar").value = data1["Peso"]
-        document.getElementById("Color_editar").value = data1["Color"]
-        document.getElementById("Aretes_editar").value = data1["Aretes"]
-        document.getElementById("Marca_editar").value = data1["Marca"]
-        document.getElementById("Edad_editar").value = data1["Edad"]
-        document.getElementById("select_sexo_editar_listageneral").value = data1["Sexo"]
-        document.getElementById("select_salud_editar_listageneral").value = data1["Salud"]
-        document.getElementById("Descripcion_editar").value = data1["Descripcion"]
-        modal_container_ganado_modificar.classList.add('show');
+function editarmodalganado() {
+  $("#tablita").on("click", ".seleccionar", function () {
+    var data1 = tbl_ganado_simple1.row($(this).parents("tr")).data();
 
-})
+    document.getElementById("id_editar_ganado").value =
+      data1["Id_Registro_Ganado"];
+    document.getElementById("Raza_editar").value = data1["Raza"];
+    document.getElementById("Peso_editar").value = data1["Peso"];
+    document.getElementById("Color_editar").value = data1["Color"];
+    document.getElementById("Aretes_editar").value = data1["Aretes"];
+    document.getElementById("Marca_editar").value = data1["Marca"];
+    document.getElementById("Edad_editar").value = data1["Edad"];
+    document.getElementById("select_sexo_editar_listageneral").value =
+      data1["Sexo"];
+    document.getElementById("select_salud_editar_listageneral").value =
+      data1["Salud"];
+    document.getElementById("Descripcion_editar").value = data1["Descripcion"];
+    modal_container_ganado_modificar.classList.add("show");
+  });
 }
 
 function modificarGanado() {
-
   let id_ganado_mo = document.getElementById("id_editar_ganado").value;
   let raza = document.getElementById("Raza_editar").value;
   let Preciounidad = document.getElementById("preciounidad_editar").value;
@@ -435,7 +433,6 @@ function modificarGanado() {
       abrioganado = true;
       localStorage.setItem("precioganado", resp);
       if (resp > 0) {
-
         Swal.fire(
           "Mensaje de confirmacion",
           "Agregado con exito",
