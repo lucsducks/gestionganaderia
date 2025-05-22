@@ -387,7 +387,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZACION_PAGO_GENERAL`(IN IDP INT, IN PT FLOAT, IN PP FLOAT,
+CREATE PROCEDURE `ACTUALIZACION_PAGO_GENERAL`(IN IDP INT, IN PT FLOAT, IN PP FLOAT,
 
 IN BI FLOAT, IN BF FLOAT, IN BE FLOAT, IN BP FLOAT, IN BEM FLOAT, IN PRU FLOAT )
 BEGIN
@@ -482,7 +482,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_GANADO`( IN IDGRUPOT INT, IN IDPAGOT INT, IN PAGOTOTBIA FLOAT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_GANADO`( IN IDGRUPOT INT, IN IDPAGOT INT, IN PAGOTOTBIA FLOAT)
 BEGIN
 
 	SET @E:= (select sum(Precio) from empresa.registrodeganado  where Id_Grupo =  IDGRUPOT );
@@ -519,7 +519,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_GANADO_PRECIO_UNITARIO`(IN IDGV INT, PESOT FLOAT, PRECIOUNI FLOAT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_GANADO_PRECIO_UNITARIO`(IN IDGV INT, PESOT FLOAT, PRECIOUNI FLOAT)
 BEGIN
 
 UPDATE empresa.registroventaganado SET
@@ -552,7 +552,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_GANADO_PRECIO_UNITARIO_GANADO`(IN IDGV INT, PESOT FLOAT, PRECIOUNI FLOAT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_GANADO_PRECIO_UNITARIO_GANADO`(IN IDGV INT, PESOT FLOAT, PRECIOUNI FLOAT)
 BEGIN
 
 
@@ -587,7 +587,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_GANADO_TOTAL`( IN IDGRUPOT INT, IN IDPAGOT INT, IN PAGOTOTBIA FLOAT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_GANADO_TOTAL`( IN IDGRUPOT INT, IN IDPAGOT INT, IN PAGOTOTBIA FLOAT)
 BEGIN
 
 	SET @E:= (select Pago_Total from empresa.pago  where Id_Pago =  IDPAGOT );
@@ -638,7 +638,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_GANADO_UNIDAD`( IN IDGRUPOT INT, IN IDPAGOT INT, IN PAGOTOTBIA FLOAT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_GANADO_UNIDAD`( IN IDGRUPOT INT, IN IDPAGOT INT, IN PAGOTOTBIA FLOAT)
 BEGIN
 
 	SET @E:= (select sum(Precio) from empresa.registrodeganado  where Id_Grupo =  IDGRUPOT );
@@ -675,7 +675,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_GANADO_VISTA`( IN IDGRUPOT INT, IN IDPAGOT INT, IN PRECIOT FLOAT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_GANADO_VISTA`( IN IDGRUPOT INT, IN IDPAGOT INT, IN PRECIOT FLOAT)
 BEGIN
 
 	UPDATE empresa.pago SET Pago_Total = PRECIOT WHERE Id_Pago = IDPAGOT;
@@ -720,7 +720,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_TOTAL_VENTA`( IN grupoventa INT, IN pesototal FLOAT, IN preciounidadventa FLOAT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_TOTAL_VENTA`( IN grupoventa INT, IN pesototal FLOAT, IN preciounidadventa FLOAT)
 BEGIN
 
 	SET @E:= (select distinct Id_Pago_Venta from registroventaganado where Grupo_Venta =  grupoventa);
@@ -765,7 +765,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_VENTA`(IN IG INT, IN PP FLOAT, IN IDP FLOAT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_VENTA`(IN IG INT, IN PP FLOAT, IN IDP FLOAT)
 BEGIN
 
 -- SET @C:=(select sum(Precio) from registroventaganado WHERE Grupo_Venta =IG);
@@ -814,7 +814,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_VENTA_PRECIO_UNIDAD_DEVERDAD`(IN IDGV INT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_VENTA_PRECIO_UNIDAD_DEVERDAD`(IN IDGV INT)
 BEGIN
 
 SET @C:=(SELECT Id_Pago_Venta from registroventaganado WHERE Id_Ganado_Registro = IDGV);
@@ -847,7 +847,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ACTUALIZAR_PAGO_VENTA_PRECIO_UNIDAD_UJUM`(IN IDGV INT)
+CREATE PROCEDURE `ACTUALIZAR_PAGO_VENTA_PRECIO_UNIDAD_UJUM`(IN IDGV INT)
 BEGIN
 
 
@@ -882,7 +882,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_BIATICO`(IN ID_PAGO32 INT)
+CREATE PROCEDURE `ELIMINAR_BIATICO`(IN ID_PAGO32 INT)
 DELETE FROM pago
 
 WHERE Id_Pago = ID_PAGO32 ;;
@@ -901,7 +901,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_BIATICO_PAGO`(IN ID_PAGO32 INT)
+CREATE PROCEDURE `ELIMINAR_BIATICO_PAGO`(IN ID_PAGO32 INT)
 DELETE FROM fechapago WHERE fechapago.Id_Pago = ID_PAGO32 ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -918,7 +918,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_COMPRADOR`(IN ID_VENDEDOR INT)
+CREATE PROCEDURE `ELIMINAR_COMPRADOR`(IN ID_VENDEDOR INT)
 DELETE FROM comprador
 
 WHERE Id_Comprador = ID_VENDEDOR ;;
@@ -937,7 +937,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_PROVEEDOR`(IN ID_VENDEDOR INT)
+CREATE PROCEDURE `ELIMINAR_PROVEEDOR`(IN ID_VENDEDOR INT)
 DELETE FROM proveedor
 WHERE Id_Proveedor = ID_VENDEDOR ;;
 DELIMITER ;
@@ -955,7 +955,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_REGISTRO_BIATICO`(IN ID_PAGO32 INT)
+CREATE PROCEDURE `ELIMINAR_REGISTRO_BIATICO`(IN ID_PAGO32 INT)
 DELETE FROM fechapago WHERE fechapago.Id_Pago = ID_PAGO32 ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -972,7 +972,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ELIMINAR_TRANSPORTISTA`(IN ID_VENDEDOR INT)
+CREATE PROCEDURE `ELIMINAR_TRANSPORTISTA`(IN ID_VENDEDOR INT)
 DELETE FROM transportista
 
 WHERE Id_Transportista = ID_VENDEDOR ;;
@@ -991,7 +991,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTADO_GRUPO_VENTAS_FILTRADO`(IN `DNIBS` INT)
+CREATE PROCEDURE `LISTADO_GRUPO_VENTAS_FILTRADO`(IN `DNIBS` INT)
 BEGIN
 
 SET @C:=DNIBS;
@@ -1146,7 +1146,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_BIATICO`()
+CREATE PROCEDURE `LISTAR_BIATICO`()
 SELECT
 
 	pago.Id_Pago,
@@ -1193,7 +1193,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_COMPRADOR`()
+CREATE PROCEDURE `LISTAR_COMPRADOR`()
 SELECT
 	empresa.comprador.Id_Comprador,
 	empresa.comprador.Nombre,
@@ -1217,7 +1217,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_FECHA_PAGO`(IN IDP INT)
+CREATE PROCEDURE `LISTAR_FECHA_PAGO`(IN IDP INT)
 SELECT
 
 	fechapago.Id_Fecha_Pago,
@@ -1250,7 +1250,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_GANADO_FILTRADO`(IN idg INT)
+CREATE PROCEDURE `LISTAR_GANADO_FILTRADO`(IN idg INT)
 BEGIN
 
  SELECT * FROM empresa.registrodeganado WHERE Id_Grupo = idg;
@@ -1271,7 +1271,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_GRUPO`()
+CREATE PROCEDURE `LISTAR_GRUPO`()
 SELECT DISTINCT
 
 	registrodeganado.Id_Grupo,
@@ -1523,7 +1523,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_GRUPO_NUEVO`()
+CREATE PROCEDURE `LISTAR_GRUPO_NUEVO`()
 SELECT DISTINCT
 
 	registrodeganado.Id_Grupo,
@@ -1596,7 +1596,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_PROVEEDOR`()
+CREATE PROCEDURE `LISTAR_PROVEEDOR`()
 BEGIN
 	select * FROM empresa.proveedor;
 END ;;
@@ -1615,7 +1615,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_TRANSPORTISTA`()
+CREATE PROCEDURE `LISTAR_TRANSPORTISTA`()
 BEGIN
 select * FROM empresa.transportista;
 END ;;
@@ -1634,7 +1634,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_VENTA_GANADO`(IN `idg` INT)
+CREATE PROCEDURE `LISTAR_VENTA_GANADO`(IN `idg` INT)
 SELECT
 
 	registroventaganado.Id_Ganado_Registro,
@@ -1713,7 +1713,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTAR_VENTA_GANADO_VENDIDOS`(IN idg INT)
+CREATE PROCEDURE `LISTAR_VENTA_GANADO_VENDIDOS`(IN idg INT)
 SELECT
 
 	registroventaganado.Id_Ganado_Registro,
@@ -1768,7 +1768,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LISTA_PAGO_FILTRADO_COMPRA`(IN GRUP INT)
+CREATE PROCEDURE `LISTA_PAGO_FILTRADO_COMPRA`(IN GRUP INT)
 SELECT
 
 	pago.Id_Pago,
@@ -1817,7 +1817,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MODIFICAR_COMPRADOR`(IN ID_VENDEDOR INT, IN NOMBRE_VENDEDOR VARCHAR(30), IN APELLIDO_VENDEDOR VARCHAR(30), IN DOCUMENTO_VENDEDOR VARCHAR(20), IN RUC_VENDEDOR VARCHAR(30))
+CREATE PROCEDURE `MODIFICAR_COMPRADOR`(IN ID_VENDEDOR INT, IN NOMBRE_VENDEDOR VARCHAR(30), IN APELLIDO_VENDEDOR VARCHAR(30), IN DOCUMENTO_VENDEDOR VARCHAR(20), IN RUC_VENDEDOR VARCHAR(30))
 UPDATE comprador SET
 
 Nombre = NOMBRE_VENDEDOR,
@@ -1844,7 +1844,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MODIFICAR_GANADO`(IN IDGANADOMOD INT, IN RAZA_GANADO VARCHAR(20),
+CREATE PROCEDURE `MODIFICAR_GANADO`(IN IDGANADOMOD INT, IN RAZA_GANADO VARCHAR(20),
 
  IN PESO_GANDO FLOAT, IN COLOR_GANADO VARCHAR(20), IN SEXO_GANADO VARCHAR(1),
 
@@ -1915,7 +1915,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MODIFICAR_PAGO`(In IDS INT,IN GRUPOIDCOMPRA INT, IN PAGOTOTAL FLOAT,
+CREATE PROCEDURE `MODIFICAR_PAGO`(In IDS INT,IN GRUPOIDCOMPRA INT, IN PAGOTOTAL FLOAT,
 
 IN PAGOPARCIAL FLOAT, RESTANTE1 FLOAT, IN BIATICOINICIO FLOAT,IN BIATICOEXTRAS FLOAT,
 
@@ -1970,7 +1970,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MODIFICAR_PROVEEDOR`(IN ID_PROVEEDORT INT, IN NOMBRE_PROVEEDOR VARCHAR(30), IN APELLIDO_PROVEEDOR VARCHAR(30), IN DOCUMENTO_PROVEEDOR VARCHAR(30), IN RUC_PROVEEDOR VARCHAR(20))
+CREATE PROCEDURE `MODIFICAR_PROVEEDOR`(IN ID_PROVEEDORT INT, IN NOMBRE_PROVEEDOR VARCHAR(30), IN APELLIDO_PROVEEDOR VARCHAR(30), IN DOCUMENTO_PROVEEDOR VARCHAR(30), IN RUC_PROVEEDOR VARCHAR(20))
 UPDATE proveedor SET
 
 Nombre = NOMBRE_PROVEEDOR,
@@ -1997,7 +1997,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `MODIFICAR_TRANSPORTISTA`(IN ID_TR INT,IN PLACA_T VARCHAR(20), IN LICENCIA_T VARCHAR(30), IN DOCUMENTO_T VARCHAR(10), IN RUC_T VARCHAR(15))
+CREATE PROCEDURE `MODIFICAR_TRANSPORTISTA`(IN ID_TR INT,IN PLACA_T VARCHAR(20), IN LICENCIA_T VARCHAR(30), IN DOCUMENTO_T VARCHAR(10), IN RUC_T VARCHAR(15))
 UPDATE transportista SET
 
 Placa = PLACA_T,
@@ -2024,7 +2024,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_COMPRADOR`(IN NOMBREV VARCHAR(30),IN APELLIDOV VARCHAR(30), IN DOCUMENTOV VARCHAR(10), IN RUCV VARCHAR(20))
+CREATE PROCEDURE `REGISTRAR_COMPRADOR`(IN NOMBREV VARCHAR(30),IN APELLIDOV VARCHAR(30), IN DOCUMENTOV VARCHAR(10), IN RUCV VARCHAR(20))
 BEGIN
 
 
@@ -2063,7 +2063,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_GANADO_VENTA`(IN IGR INT,IN IGV INT, IN COM INT, IN TRANS INT, IN IPG INT)
+CREATE PROCEDURE `REGISTRAR_GANADO_VENTA`(IN IGR INT,IN IGV INT, IN COM INT, IN TRANS INT, IN IPG INT)
 BEGIN
 
 INSERT INTO registroventaganado(Id_Ganado_Registro,Grupo_Venta,Id_Comprador,Id_Transportista,Id_Pago_Venta) VALUES (IGR,IGV,COM,TRANS,IPG);
@@ -2090,7 +2090,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_GRUPO_COMPRA`()
+CREATE PROCEDURE `REGISTRAR_GRUPO_COMPRA`()
 BEGIN
 
  SET @A:= (SELECT max(Id_Grupo) from registrodeganado);
@@ -2123,7 +2123,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_GRUPO_VENTA`()
+CREATE PROCEDURE `REGISTRAR_GRUPO_VENTA`()
 BEGIN
 
  SET @A:= (SELECT max(Grupo_Venta) from registroventaganado);
@@ -2156,7 +2156,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_PAGO`(
+CREATE PROCEDURE `REGISTRAR_PAGO`(
 
 IN PAGOPARCIAL FLOAT, IN BIATICOINICIO FLOAT,IN BIATICOEXTRAS FLOAT,
 
@@ -2189,7 +2189,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_PAGO_TOTAL`(IN PAGOTOTALP FLOAT,
+CREATE PROCEDURE `REGISTRAR_PAGO_TOTAL`(IN PAGOTOTALP FLOAT,
 
 IN PAGOPARCIAL FLOAT, IN BIATICOINICIO FLOAT,IN BIATICOEXTRAS FLOAT,
 
@@ -2230,7 +2230,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_PAGO_VENTA`(
+CREATE PROCEDURE `REGISTRAR_PAGO_VENTA`(
 
 IN PAGOPARCIAL FLOAT, IN BIATICOINICIO FLOAT,IN BIATICOEXTRAS FLOAT,
 
@@ -2263,7 +2263,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_PROVEEDOR`(IN NOMBREV VARCHAR(30),IN APELLIDOV VARCHAR(30), IN DOCUMENTOV VARCHAR(10), IN RUCV VARCHAR(20))
+CREATE PROCEDURE `REGISTRAR_PROVEEDOR`(IN NOMBREV VARCHAR(30),IN APELLIDOV VARCHAR(30), IN DOCUMENTOV VARCHAR(10), IN RUCV VARCHAR(20))
 BEGIN
 
 
@@ -2300,7 +2300,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRAR_TRANSPORTISTA`(IN PLACA_T VARCHAR(20), IN LICENCIA_T VARCHAR(30), IN DOCUMENTO_T VARCHAR(10), IN RUC_T VARCHAR(15))
+CREATE PROCEDURE `REGISTRAR_TRANSPORTISTA`(IN PLACA_T VARCHAR(20), IN LICENCIA_T VARCHAR(30), IN DOCUMENTO_T VARCHAR(10), IN RUC_T VARCHAR(15))
 BEGIN
 
 
@@ -2339,7 +2339,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRO_GANADO`(IN RAZA_GANADO VARCHAR(20), IN PESO FLOAT, IN COLOR_GANADO VARCHAR(20), IN SEXO_GANADO VARCHAR(1), IN SALUD_GANADO VARCHAR(4), IN MARCA_GANADO VARCHAR(10), IN ARETES_GANADO VARCHAR(10),IN SCRIPCION_GANADO text,IN IDGRUPO_GANADO INT, IN EDAD_GANADO INT, PRECIO_GANADO FLOAT,
+CREATE PROCEDURE `REGISTRO_GANADO`(IN RAZA_GANADO VARCHAR(20), IN PESO FLOAT, IN COLOR_GANADO VARCHAR(20), IN SEXO_GANADO VARCHAR(1), IN SALUD_GANADO VARCHAR(4), IN MARCA_GANADO VARCHAR(10), IN ARETES_GANADO VARCHAR(10),IN SCRIPCION_GANADO text,IN IDGRUPO_GANADO INT, IN EDAD_GANADO INT, PRECIO_GANADO FLOAT,
 
  IN ID_PROVEEDOR_GANADO INT, IN ID_TRANSPORTISTA_GANADO INT,IN ID_PAGO_GANADO INT, IN TIP VARCHAR(29))
 BEGIN
@@ -2370,7 +2370,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `REGISTRO_GANADO_TOTAL`(IN RAZA_GANADO VARCHAR(20), IN PESO FLOAT, IN COLOR_GANADO VARCHAR(20), IN SEXO_GANADO VARCHAR(1), IN SALUD_GANADO VARCHAR(4), IN MARCA_GANADO VARCHAR(10), IN ARETES_GANADO VARCHAR(10),IN SCRIPCION_GANADO text,IN IDGRUPO_GANADO INT, IN EDAD_GANADO INT,
+CREATE PROCEDURE `REGISTRO_GANADO_TOTAL`(IN RAZA_GANADO VARCHAR(20), IN PESO FLOAT, IN COLOR_GANADO VARCHAR(20), IN SEXO_GANADO VARCHAR(1), IN SALUD_GANADO VARCHAR(4), IN MARCA_GANADO VARCHAR(10), IN ARETES_GANADO VARCHAR(10),IN SCRIPCION_GANADO text,IN IDGRUPO_GANADO INT, IN EDAD_GANADO INT,
 
  IN ID_PROVEEDOR_GANADO INT, IN ID_TRANSPORTISTA_GANADO INT,IN ID_PAGO_GANADO INT,IN TIP VARCHAR(29))
 BEGIN
@@ -2399,7 +2399,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GANADO`(IN grupogranadot INT)
+CREATE PROCEDURE `SELECT_GANADO`(IN grupogranadot INT)
 SELECT DISTINCT
 
 	registrodeganado.Id_Registro_Ganado,
@@ -2454,7 +2454,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GANADO_INPUT`(IN idganadot INT)
+CREATE PROCEDURE `SELECT_GANADO_INPUT`(IN idganadot INT)
 SELECT
 
 	registrodeganado.Id_Registro_Ganado,
@@ -2505,7 +2505,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GANADO_INPUT_LISTA_VENTA`(IN idganadot INT)
+CREATE PROCEDURE `SELECT_GANADO_INPUT_LISTA_VENTA`(IN idganadot INT)
 SELECT
 
 	registrodeganado.Id_Registro_Ganado,
@@ -2556,7 +2556,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GANADO_VENTA`( IN GDV INT)
+CREATE PROCEDURE `SELECT_GANADO_VENTA`( IN GDV INT)
 SELECT
 
 	registrodeganado.Id_Registro_Ganado,
@@ -2615,7 +2615,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GRUPO_COMPRA`()
+CREATE PROCEDURE `SELECT_GRUPO_COMPRA`()
 SELECT DISTINCT
 
 	registrodeganado.Id_Grupo,
@@ -2648,7 +2648,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_GRUPO_COMPRA_TOTAL`()
+CREATE PROCEDURE `SELECT_GRUPO_COMPRA_TOTAL`()
 SELECT DISTINCT
 
 	registroventaganado.Grupo_Venta,
@@ -2687,7 +2687,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `VERIFICAR_USUARIO`(IN USUARIOT VARCHAR(30))
+CREATE PROCEDURE `VERIFICAR_USUARIO`(IN USUARIOT VARCHAR(30))
 SELECT
 
 	usuario.Id_Usuario,
@@ -2725,7 +2725,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY DEFINER */
 /*!50001 VIEW `listado_biatico` AS select `pago`.`Id_Pago` AS `Id_Pago`,`proveedor`.`Documento` AS `proveedor`,`comprador`.`Documento` AS `comprador`,`pago`.`Pago_Total` AS `Pago_Total`,`pago`.`Pago_Parcial` AS `Pago_Parcial`,`pago`.`Restante` AS `Restante`,`pago`.`Biatico_Inicio` AS `Biatico_Inicio`,`pago`.`Biatico_Final` AS `Biatico_Final`,`pago`.`Biatico_Extras` AS `Biatico_Extras`,`pago`.`Biatico_Personal` AS `Biatico_Personal`,`pago`.`Biatico_Empresa` AS `Biatico_Empresa`,`pago`.`Fecha` AS `Fecha`,`pago`.`Estado` AS `Estado`,`pago`.`Precio_Unidad` AS `Precio_Unidad`,`pago`.`Tipo` AS `Tipo` from ((((`pago` join `registrodeganado` on((`pago`.`Id_Pago` = `registrodeganado`.`Id_Pago`))) join `proveedor` on((`registrodeganado`.`Id_Proveedor` = `proveedor`.`Id_Proveedor`))) join `registroventaganado` on(((`registrodeganado`.`Id_Registro_Ganado` = `registroventaganado`.`Id_Ganado_Registro`) or (`pago`.`Id_Pago` = `registroventaganado`.`Id_Pago_Venta`)))) join `comprador` on((`registroventaganado`.`Id_Comprador` = `comprador`.`Id_Comprador`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2743,7 +2743,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY DEFINER */
 /*!50001 VIEW `listado_comprador` AS select `comprador`.`Id_Comprador` AS `Id_Comprador`,`comprador`.`Nombre` AS `Nombre`,`comprador`.`Apellido` AS `Apellido`,`comprador`.`Documento` AS `Documento`,`comprador`.`RUC` AS `RUC` from `comprador` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2761,7 +2761,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY DEFINER */
 /*!50001 VIEW `listado_grupo_ventas` AS select `registroventaganado`.`Grupo_Venta` AS `Grupo_Venta`,`pago`.`Fecha` AS `Fecha`,`pago`.`Id_Pago` AS `Id_Pago`,concat_ws(' ',`comprador`.`Nombre`,`comprador`.`Apellido`) AS `Nombre`,`comprador`.`Documento` AS `Documento`,`transportista`.`Licencia` AS `Licencia`,count(`registroventaganado`.`Grupo_Venta`) AS `cantidad`,`pago`.`Ubicacion` AS `Ubicacion`,`pago`.`Precio_Unidad` AS `Precio_Unidad`,truncate(`pago`.`Pago_Total`,2) AS `Pago_Total`,truncate(`pago`.`Restante`,2) AS `Restante` from (((`registroventaganado` join `pago` on((`registroventaganado`.`Id_Pago_Venta` = `pago`.`Id_Pago`))) join `comprador` on((`registroventaganado`.`Id_Comprador` = `comprador`.`Id_Comprador`))) join `transportista` on((`registroventaganado`.`Id_Transportista` = `transportista`.`Id_Transportista`))) group by `registroventaganado`.`Grupo_Venta` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2779,7 +2779,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY DEFINER */
 /*!50001 VIEW `listado_proveedor` AS select `proveedor`.`Id_Proveedor` AS `Id_Proveedor`,`proveedor`.`Nombre` AS `Nombre`,`proveedor`.`Apellido` AS `Apellido`,`proveedor`.`Documento` AS `Documento`,`proveedor`.`ruc` AS `Ruc` from `proveedor` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -2797,7 +2797,7 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50013 SQL SECURITY DEFINER */
 /*!50001 VIEW `listado_transportista` AS select `transportista`.`Id_Transportista` AS `Id_Transportista`,`transportista`.`Placa` AS `Placa`,`transportista`.`Licencia` AS `Licencia`,`transportista`.`Documento` AS `Documento`,`transportista`.`RUC` AS `RUC` from `transportista` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
