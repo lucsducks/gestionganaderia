@@ -79,7 +79,7 @@ cd gestionganaderia
 
 5. Abre el archivo `modelo_conexion.php` y edita la línea de conexión:
 
-   $dsn = 'mysql:dbname=ganadero;host=localhost';
+   $dsn = 'mysql:dbname=empresa;host=localhost';
     $usuario = 'root';
    $contrasena = ''; (ajusta según tu configuración local)
 
