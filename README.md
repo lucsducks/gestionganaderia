@@ -1,5 +1,7 @@
 # 🐄 PROYECTO DE GESTIÓN DE GANADERÍA
 
+## Dar click aqui: [Pagina Demo](https://ganados.eduardolucas.lat/)
+
 Este sistema permite gestionar de forma integrada el proceso de compra, venta, transporte y pago de ganado, así como la administración de proveedores, transportistas y el análisis de ganancias por grupo.
 
 Fue desarrollado como proyecto académico durante el segundo año de carrera universitaria, en el marco del curso **Programación II**, con el objetivo de aplicar conocimientos de desarrollo web, manejo de bases de datos relacionales y estructuración de sistemas de gestión con tecnologías como PHP, MySQL, JavaScript y HTML/CSS.
@@ -34,7 +36,7 @@ cd gestion-ganaderia
 2. Si es la **primera vez**, simplemente ejecuta:
 
 ```bash
-   docker-compose up -d
+  docker-compose up -d
 ```
 
 3. Accede desde tu navegador a:
@@ -47,9 +49,9 @@ cd gestion-ganaderia
 4. Si deseas reiniciar todo el entorno desde cero (eliminando la base, regenerando contenedores e imagen personalizada PHP), ejecuta:
 
 ```bash
-   docker-compose down -v
-   docker-compose build
-   docker-compose up -d
+  docker-compose down -v
+  docker-compose build
+  docker-compose up -d
 ```
 
 > ⚠️ Usa este procedimiento solo si cambiaste el Dockerfile, el archivo SQL, o deseas limpiar todo el entorno.
@@ -78,7 +80,7 @@ cd gestion-ganaderia
 5. Abre el archivo `modelo_conexion.php` y edita la línea de conexión:
 
    $dsn = 'mysql:dbname=ganadero;host=localhost';
-   $usuario = 'root';
+    $usuario = 'root';
    $contrasena = ''; (ajusta según tu configuración local)
 
 6. Accede a la aplicación desde:
