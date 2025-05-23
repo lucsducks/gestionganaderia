@@ -10,7 +10,7 @@ Fue desarrollado como proyecto académico durante el segundo año de carrera uni
 
 ## ⚙️ REQUISITOS GENERALES
 
-- Navegador moderno (Chrome, Firefox, Edge)
+- Navegador (Chrome, Firefox, Edge)
 - MySQL Server 8 o superior
 - PHP 8.1 o superior con soporte para `PDO` y `pdo_mysql`
 - Docker Desktop (si usas la instalación automatizada)
@@ -29,8 +29,8 @@ Fue desarrollado como proyecto académico durante el segundo año de carrera uni
 1. Clona este repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/tuusuario/gestion-ganaderia.git
-cd gestion-ganaderia
+git clone https://github.com/lucsducks/gestionganaderia.git
+cd gestionganaderia
 ```
 
 2. Si es la **primera vez**, simplemente ejecuta:
@@ -110,7 +110,7 @@ Credenciales de prueba habilitadas por defecto:
 
 ## 🛡️ SEGURIDAD
 
-- Las contraseñas deben almacenarse con `password_hash()`
+- Las contraseñas deben generarse con `password_hash()`, ya que no existe un apartado de usuarios en si eso debes hacerlo manualmente en la Base de Datos
 - No olvides cambiar las credenciales por defecto en producción
 
 ---
