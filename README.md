@@ -43,8 +43,8 @@ cd gestionganaderia
 
 - Aplicación web: http://localhost:8080
 - phpMyAdmin: http://localhost:8081
-  Usuario: **ganadero**
-  Contraseña: **ganadero**
+  Usuario: **empresa**
+  Contraseña: **empresa**
 
 4. Si deseas reiniciar todo el entorno desde cero (eliminando la base, regenerando contenedores e imagen personalizada PHP), ejecuta:
 
@@ -73,7 +73,7 @@ cd gestionganaderia
 
 2. Abre **phpMyAdmin** desde http://localhost/phpmyadmin
 
-3. Crea una base de datos llamada `ganadero`
+3. Crea una base de datos llamada `empresa`
 
 4. Importa el archivo `bd_empresa.sql` incluido en el proyecto
 
